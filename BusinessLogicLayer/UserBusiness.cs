@@ -46,5 +46,20 @@ namespace BusinessLogicLayer
             user.token = tokenHandler.WriteToken(token);
             return user; 
         }
+        //them tai khoan
+        public bool Create(UserModel model)
+        {
+            return _res.Create(model);
+        }
+
+        public bool Update(UserModel model)
+        {
+            return _res.Update(model);
+        }
+        //xoa tk
+        public bool Delete(UserModel model)
+        {
+            return _res.Delete(model);
+        }
     }
 }

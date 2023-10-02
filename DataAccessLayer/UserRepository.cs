@@ -44,5 +44,74 @@ namespace DataAccessLayer
                 throw ex;
             }
         } 
+
+
+
+        //them tai khoan
+        public bool Create(UserModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_tai_khoan_create",
+                "@LoaiTK", model.LoaiTaiKhoan,
+                "@TenTK", model.TenTaiKhoan,
+                "@MatKhau", model.MatKhau,
+                "@Email", model.Email);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Update(UserModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_tai_khoan_update",
+                "@MaTK", model.MaTaiKhoan,
+                "@LoaiTK", model.LoaiTaiKhoan,
+                "@TenTK", model.TenTaiKhoan,
+                "@MatKhau", model.MatKhau,
+                "@Email", model.Email);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Xoa tai khoan
+        public bool Delete(UserModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_tai_khoan_delete",
+                "@MaTK", model.MaTaiKhoan
+                );
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

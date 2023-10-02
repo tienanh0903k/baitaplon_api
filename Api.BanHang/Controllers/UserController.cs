@@ -15,8 +15,8 @@ namespace Api.BanHang.Controllers
         {
             _userBusiness = userBusiness;
         }
-
         [HttpGet]
+        //[Authorize]
         [Route("get-all")]
         public List<UserModel> GetAll()
         {
@@ -32,5 +32,31 @@ namespace Api.BanHang.Controllers
                 return BadRequest(new { message = "Tài khoản hoặc mật khẩu không đúng!" });
             return Ok(new { taikhoan = user.TenTaiKhoan, email = user.Email, token = user.token });
         }
+
+
+        [Route("create-user")]
+        [HttpPost]
+        public UserModel CreateItem([FromBody] UserModel model)
+        {
+            _userBusiness.Create(model);
+            return model;
+        }
+
+        [Route("update-khach")]
+        [HttpPost]
+        public UserModel UpdateItem([FromBody] UserModel model)
+        {
+            _userBusiness.Update(model);
+            return model;
+        }
+
+        [Route("delete-user")]
+        [HttpDelete]
+        public UserModel DeleteItem(UserModel model)
+        {
+            _userBusiness.Delete(model);
+            return model;
+        }
+
     }
 }
