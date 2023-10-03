@@ -1,0 +1,26 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/khach/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44306
+        }
+      ],
+      "UpstreamPathTemplate": "/api-admin/khach-hang/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5183"
+  }
+
+}

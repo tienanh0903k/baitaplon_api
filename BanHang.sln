@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{B25C74DA-C2EC-4743-9FFF-B59A480CE036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{B25C74DA-C2EC-4743-9FFF-B59A480CE036}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{8A84A36E-5A0A-4C1E-A4BB-D284F5651865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{8A84A36E-5A0A-4C1E-A4BB-D284F5651865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.BanHang", "Api.BanHang\Api.BanHang.csproj", "{BFE1FCC0-79D7-408F-9B2B-70DF65BC37C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.BanHang", "Api.BanHang\Api.BanHang.csproj", "{BFE1FCC0-79D7-408F-9B2B-70DF65BC37C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{4120301B-F1D5-4558-A95A-F9945D9C5413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{4120301B-F1D5-4558-A95A-F9945D9C5413}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_User", "Api_User\Api_User.csproj", "{0ABDAB20-E3B4-4A4A-833E-A6DE818835F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GateWays", "GateWays\GateWays.csproj", "{33B538B1-5732-413B-A66B-F2D5021B3082}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{4120301B-F1D5-4558-A95A-F9945D9C5413}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4120301B-F1D5-4558-A95A-F9945D9C5413}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4120301B-F1D5-4558-A95A-F9945D9C5413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ABDAB20-E3B4-4A4A-833E-A6DE818835F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ABDAB20-E3B4-4A4A-833E-A6DE818835F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ABDAB20-E3B4-4A4A-833E-A6DE818835F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ABDAB20-E3B4-4A4A-833E-A6DE818835F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B538B1-5732-413B-A66B-F2D5021B3082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B538B1-5732-413B-A66B-F2D5021B3082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B538B1-5732-413B-A66B-F2D5021B3082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B538B1-5732-413B-A66B-F2D5021B3082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
