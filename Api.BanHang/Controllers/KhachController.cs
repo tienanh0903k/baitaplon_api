@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Api.BanHang.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class KhachController : ControllerBase

@@ -1,5 +1,14 @@
-var builder = WebApplication.CreateBuilder(args);
+using DataAccessLayer;
+using DataModel;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,6 +25,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

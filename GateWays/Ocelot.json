@@ -16,6 +16,22 @@
       //  "AuthenticationProviderKey": "Bearer",
       //  "AllowedScopes": []
       //}
+
+
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/HoaDon/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44306
+        }
+      ],
+      "UpstreamPathTemplate": "/api-admin/HoaDon-admin/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
     }
   ],
 
