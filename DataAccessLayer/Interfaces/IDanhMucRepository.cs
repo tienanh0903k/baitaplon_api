@@ -7,10 +7,8 @@ using DataModel;
 
 namespace DataAccessLayer
 {
-    public interface ISanPhamRepository
+    public partial interface IDanhMucRepository
     {
-        SanPhamModels GetDatabyID(int id);
-
-        List<SanPhamModels> GetAll();
+        List<DanhMucModel> GetDanhMuc(string name);
     }
 }

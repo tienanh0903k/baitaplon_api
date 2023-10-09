@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DataModel;
 
-namespace DataAccessLayer
+namespace BusinessLogicLayer
 {
-    public interface ISanPhamRepository
+    public partial interface IDanhMucBusiness
     {
-        SanPhamModels GetDatabyID(int id);
-
-        List<SanPhamModels> GetAll();
+        List<DanhMucModel> GetDanhMuc(string name);
     }
 }
