@@ -17,8 +17,6 @@ namespace DataModel
         public int SoLuong { get; set; }
         public bool TrangThai { get; set; }
         public int LuotXem { get; set; }
-        
-
         public List<ChiTietSanPhamModel> list_json_chitietsanpham { get; set; }
     }
 

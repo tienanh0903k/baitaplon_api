@@ -2,20 +2,19 @@ using BusinessLogicLayer;
 using DataAccessLayer;
 using DataModel;
 
-
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
-// Add services to the container.
+// Add services to the container.   
 builder.Services.AddTransient<IDatabaseHelper, DatabaseHelper>();
 builder.Services.AddTransient<IDanhMucRepository, DanhMucRepository>();
 builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
 builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
 builder.Services.AddTransient<ISanPhamBusiness, SanPhamBusiness>();
-
+builder.Services.AddTransient<ITinTucRepository, TinTucRepository>();
+builder.Services.AddTransient<ITinTucBussiness, TinTucBussiness>();
 
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;
