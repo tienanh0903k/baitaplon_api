@@ -27,21 +27,25 @@ namespace DataAccessLayer
             }
         }
 
-        public List<SanPhamModels> GetAll()
+        public List<SanPhamModels> GetAll(string tenChuyenMuc)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_san_pham_get_all");
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "GetAllSanPhamByDanhMuc", "@TenChuyenMuc", tenChuyenMuc);
+
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
+
                 return dt.ConvertTo<SanPhamModels>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+
         }
+
 
 
         public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp)

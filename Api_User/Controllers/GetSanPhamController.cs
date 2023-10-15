@@ -16,10 +16,31 @@ namespace Api_User.Controllers
         }
 
         [HttpGet]
-        public List<SanPhamModels> GetAll()
+        [Route("DanhMuc")]
+        public IActionResult GetAllSanPhamByDanhMuc([FromQuery] string? TenChuyenMuc)
         {
-            return _bus.GetAll();
+            try
+            {
+                List<SanPhamModels> data = _bus.GetAll(TenChuyenMuc);
+
+                if (data != null && data.Count > 0)
+                {
+                    return Ok(data);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý hoặc ghi log cho lỗi
+                return BadRequest("Lỗi: " + ex.Message);
+            }
         }
+
+
+
 
 
         [Route("search")]
@@ -28,7 +49,7 @@ namespace Api_User.Controllers
         {
             try
             {
-                var page = int.Parse(formData["page"].ToString());
+                var page = int.Parse(formData["page"].ToString());  
                 var pageSize = int.Parse(formData["pageSize"].ToString());
                 string ten_sp = "";
                 if (formData.Keys.Contains("ten_sp") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_sp"]))) { ten_sp = Convert.ToString(formData["ten_sp"]); }
