@@ -13,7 +13,7 @@ namespace DataModel
         public int SoLuong { get; set; }
         public Decimal TongGia { get; set; }
         public DateTime NgayTao { get; set; }
-        public string TenKH { get; set; }
+        public string TenKH { get; set; }   
         public string Diachi { get; set; }
     }
      

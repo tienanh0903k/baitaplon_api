@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatMaodel
+namespace DataModel
 {
     public class SanPhamModels
     {
@@ -25,8 +25,20 @@ namespace DatMaodel
     {
         public int MaChiTietSanPham { get; set; }
         public int MaSanPham { get; set; }
+        public string Anh1 { get; set; }
+        public string Anh2 { get; set; }
         public int MaNhaSanXuat { get; set; }
         public string MoTa { get; set; }
         public string ChiTiet { get; set; }
+
+    }
+
+
+    public class AllProducts
+    { 
+        public List<SanPhamModels> BanChay { get; set; }
+        public List<SanPhamModels> XemNhieu { get; set; }
+        public List<SanPhamModels> MoiNhat { get; set; }
     }
 }
+

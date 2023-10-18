@@ -12,6 +12,8 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+
+        //for admin
         public SanPhamModels GetDatabyID(int id)
         {
             return _res.GetDatabyID(id);
@@ -26,7 +28,6 @@ namespace BusinessLogicLayer
                 {
                     // Xử lý trường hợp ten_cm là null hoặc rỗng
                     // Lấy tất cả sản phẩm hoặc thực hiện tương tự
-                    return _res.GetAll(null);
                     return _res.GetAll(null);
                 }
                 else
@@ -45,6 +46,14 @@ namespace BusinessLogicLayer
         public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp)
         {
             return _res.Search(pageIndex, pageSize, out total, ten_sp);
+        }
+
+
+
+        //get all trang chu cho nguoi dung
+        public List<AllProducts> GetAllHome()
+        {
+            return _res.GetAllHome();
         }
     }
 }

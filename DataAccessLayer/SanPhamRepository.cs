@@ -1,4 +1,5 @@
 ﻿using DataModel;
+using Newtonsoft.Json;
 
 namespace DataAccessLayer
 {
@@ -68,6 +69,27 @@ namespace DataAccessLayer
             {
                 throw ex;
             }
+        }
+
+        //getAll trang chuiu
+        public List<AllProducts> GetAllHome()
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_3_chu_de");
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                string jsonString = dt.Rows[0]["AllProduct"].ToString();
+                List<AllProducts> allProductsList = JsonConvert.DeserializeObject<List<AllProducts>>(jsonString);
+                return allProductsList;
+                //return dt.ConvertTo<AllProducts>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
 

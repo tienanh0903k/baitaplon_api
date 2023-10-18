@@ -11,6 +11,7 @@ namespace BusinessLogicLayer
     {
         SanPhamModels GetDatabyID(int id);
         List<SanPhamModels> GetAll(string ten_cm);
+        List<AllProducts> GetAllHome();
         public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp);
 
     }
