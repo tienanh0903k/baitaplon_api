@@ -10,6 +10,7 @@ namespace BusinessLogicLayer
     public partial interface IUserBusiness
     {
         List<UserModel> GetAll();
+        UserModel GetDetail(string taiKhoan);
         bool Create(UserModel model);
         bool Update(UserModel model);
         bool Delete(UserModel model);

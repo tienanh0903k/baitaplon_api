@@ -26,6 +26,23 @@ namespace DataAccessLayer
             }
         }
 
+        public UserModel GetDetail(string taikhoan)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_account_login",
+                 "@tenTaiKhoan", taikhoan);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<UserModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public UserModel Login(string taikhoan, string matkhau)
         {
             string msgError = "";

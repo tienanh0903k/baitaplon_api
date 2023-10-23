@@ -30,5 +30,28 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+
+        public bool Create(TinTucModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_create_tin_tuc",
+                "@TieuDe", model.TieuDe,
+                "@AnhDaiDien", model.AnhDaiDien,
+                "@TacGia", model.TacGia,
+                "@NgayTao", model.NgayTao
+                );
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

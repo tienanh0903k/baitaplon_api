@@ -17,7 +17,10 @@ builder.Services.AddTransient<ITinTucRepository, TinTucRepository>();
 builder.Services.AddTransient<ITinTucBussiness, TinTucBussiness>();
 builder.Services.AddTransient<IGioHangRepository, GioHangRepository>();
 builder.Services.AddTransient<IGioHangBusiness, GioHangBusiness>();
-
+builder.Services.AddTransient<IDonHangRepository, DonHangRepository>();
+builder.Services.AddTransient<IDonHangBusiness, DonHangBusiness>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IUserBusiness, UserBusiness>();
 
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;

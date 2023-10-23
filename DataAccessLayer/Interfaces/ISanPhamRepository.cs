@@ -14,5 +14,7 @@ namespace DataAccessLayer
         List<SanPhamModels> GetAll(string danh_muc);
         public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp);
         List<AllProducts> GetAllHome();
+
+        bool Create(SanPhamModels model);
     }
 }

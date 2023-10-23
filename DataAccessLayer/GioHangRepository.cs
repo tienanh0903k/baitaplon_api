@@ -10,6 +10,8 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+
+         
         public bool Create(GioHangModel model)
         {
             string msgError = "";

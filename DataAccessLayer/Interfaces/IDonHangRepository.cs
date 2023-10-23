@@ -7,9 +7,8 @@ using DataModel;
 
 namespace DataAccessLayer
 {
-    public partial interface ITinTucRepository
+    public partial interface IDonHangRepository
     {
-        List<TinTucModel> GetAllTinTuc();
-        bool Create(TinTucModel model);
+        bool Create(DonHangModel model);
     }
 }

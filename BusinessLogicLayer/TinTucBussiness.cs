@@ -21,5 +21,10 @@ namespace BusinessLogicLayer
         {
             return _res.GetAllTinTuc();
         }
+
+        public bool Create(TinTucModel model)
+        {
+            return _res.Create(model);
+        }
     }
 }

@@ -93,5 +93,33 @@ namespace DataAccessLayer
         }
 
 
+        public bool Create(SanPhamModels model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "",
+                    "@MaChuyenMuc", model.TenSanPham,
+                    "@AnhDaiDien", model.TenSanPham,
+                    "@TacGia", model.AnhDaiDien,
+                    "@NgayTao", model.NgayTao,
+                    "@Gia", model.Gia,
+                    "@SoLuong", model.SoLuong,
+                    "@TrangThai", model.TrangThai,
+                    "@LuotXem", model.LuotXem
+                );
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }

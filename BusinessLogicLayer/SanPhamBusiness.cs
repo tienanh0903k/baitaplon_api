@@ -48,6 +48,11 @@ namespace BusinessLogicLayer
             return _res.Search(pageIndex, pageSize, out total, ten_sp);
         }
 
+        public bool Create(SanPhamModels model)
+        {
+            return _res.Create(model);
+        }
+
 
 
         //get all trang chu cho nguoi dung

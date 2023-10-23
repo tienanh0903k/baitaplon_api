@@ -32,5 +32,15 @@ namespace Api_User.Controllers
             _userBusiness.Create(model);
             return model;
         }
+
+        [Route("get-detail/{taiKhoan}")]
+        [HttpGet]
+        public UserModel GetDetail(string taiKhoan)
+        {
+            return _userBusiness.GetDetail(taiKhoan);
+        }
+
+
+
     }
 }

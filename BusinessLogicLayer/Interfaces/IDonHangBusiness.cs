@@ -7,9 +7,8 @@ using DataModel;
 
 namespace BusinessLogicLayer
 {
-    public partial interface ITinTucBussiness
+    public partial interface IDonHangBusiness
     {
-        List<TinTucModel> GetAllTinTuc();
-        bool Create(TinTucModel model);
+        bool Create(DonHangModel model);
     }
 }

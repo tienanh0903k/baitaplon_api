@@ -24,7 +24,10 @@ namespace BusinessLogicLayer
         {
             return _res.GetAll();
         }
-
+        public UserModel GetDetail(string taiKhoan)
+        {
+            return _res.GetDetail(taiKhoan);
+        }
         public UserModel Login(string taikhoan, string matkhau)
         {
             var user = _res.Login(taikhoan, matkhau);
