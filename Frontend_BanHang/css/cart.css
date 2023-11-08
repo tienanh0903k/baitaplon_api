@@ -1,0 +1,154 @@
+.main {
+    max-width: 1220px;
+    margin-top: 25px;
+}
+
+.main .title {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.main .table-prod {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.main .table-prod th,
+td {
+    text-align: left;
+}
+
+.main .table-prod img {
+    width: 50px;
+    height: 50px;
+}
+
+.main .table-prod .txtbox-count {
+    width: 30px;
+}
+
+.main .table-prod tbody {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 860px) {
+    .main .table-prod tbody button {
+        display: none;
+    }
+}
+
+.main .table-prod tbody button {
+    cursor: pointer;
+}
+
+.main .update {
+    border-top: 1px solid rgb(0, 0, 0);
+    width: 100%;
+    text-align: right;
+    margin-left: 0px;
+}
+
+.main .update button {
+    border: none;
+    background-color: rgb(0, 0, 0);
+    line-height: 35px;
+    color: white;
+    font-weight: bold;
+    padding: 3px 10px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.main .update button:hover {
+    cursor: pointer;
+    background-color: rgb(72, 71, 71);
+}
+
+.main .right .table-right {
+    margin-left: 0px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main .right .table-right .title {
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 2px solid #dbdbdb;
+    width: 100%;
+}
+
+.main .right .table-right td {
+    font-size: 14px;
+    padding: 10px 0px 6px 0px;
+}
+
+.main .right .table-right .h {
+    padding-top: 20px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.main .right .table-right .price {
+    text-align: right;
+    padding-right: 0px;
+    font-weight: bold;
+}
+
+.main .right .pay {
+    border-top: 2px solid #dbdbdb;
+    margin-top: 5px;
+    padding-top: 25px;
+}
+
+.main .right .pay button {
+    border: none;
+    background-color: rgb(43, 82, 149);
+    line-height: 35px;
+    color: white;
+    font-weight: bold;
+    padding: 3px 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.main .right .pay button:hover {
+    cursor: pointer;
+    background-color:rgba(45, 65, 183, 0.697);
+}
+
+.main .right .endow {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.main .right .endow p {
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 2px solid #dbdbdb;
+    padding-bottom: 10px;
+}
+
+.main .right .endow input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+    border: 1px solid #dbdbdb;
+}
+
+.main .right .endow button {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.main .right .endow button:hover {
+    background-color: antiquewhite;
+}
+
+.main .padding-table {
+    padding: 15px;
+}
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logoCPT.png">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="./css/grid.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <script src="./js/hienthi.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <title>Giỏ hàng</title>
+</head>
+
+<body ng-app="AppBanHang" ng-controller="CartCtrl">
+    <!-- <button onclick="topFunction()" id="myBtn"><i class="fas fa-angle-up"></i></button> -->
+    <script>addHeader()</script>
+    <section class="main" ng-show="isLogin">
+        <div class="title">Giỏ hàng</div>
+        <div class="row">
+            <div class="col-10 colf-s-12 padding-table">
+                <table class="table-prod">
+                    <thead>
+                        <tr>
+                            <th colspan="3">SẢN PHẨM</th>
+                            <th>GIÁ</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>TẠM TÍNH</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listCart">
+                        <tr ng-repeat="x in listCart">
+                            <td><i ng-click="Xoa(x.maSanPham)" class="fa fa-times-circle"
+                                    style="font-size:30px;color:red;cursor: pointer;"></i></td>
+                            <td><img src="{{x.anhDaiDien}}"></td>
+                            <td>{{x.tenSanPham}}</td>
+                            <td>{{x.gia}}</td>
+                            <td>
+                                <button ng-click="Giam(x.maSanPham)"></button>
+                                <input id="q_{{x.maSanPham}}" ng-model="x.quantity" ng-change="updateQuantity(x.maSanPham)" type="number"
+                                    style="width: 50px;" min="1">
+                                <button ng-click="Tang(x.maSanPham)"></button>
+                            </td>
+                            <td>{{x.gia * x.quantity}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <div class="update">
+                    <button onclick="updateCart()">Cập nhật giỏ hàng</button>
+                    <button onclick="XoaCart()">Xóa giỏ hàng</button>
+                </div>
+            </div>
+            <div class="col-2 colf-s-12 right padding-table">
+                <table class="table-right">
+                    <tr>
+                        <td colspan="2" class="title">CỘNG GIỎ HÀNG</td>
+
+                    </tr>
+                    <tr>
+                        <td class="h">Tạm tính</td>
+                        <!-- <td class="price h">12150000₫</td> -->
+                        <td class="price h" id="tTong">0</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng</td>
+                        <!-- <td class="price">12150000</td> -->
+                        <td class="price" id="spTong">{{total}}</td>
+                    </tr>
+                </table>
+                <div class="pay">
+                    <a href="./thanhtoan.html">
+                        <button>Tiến hành thanh toán</button>
+                    </a>
+                    <script src="js/cart.js"></script>
+                </div>
+                <div class="endow">
+                    <p><i class="fas fas fa-ticket-alt"></i> Phiếu ưu đãi</p>
+                    <input type="text" placeholder="Mã ưu đãi"><br>
+                    <button class="btn-updateCart">Áp dụng</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div ng-show="!isLogin">
+        <h1 style="color:red; with:100%; text-align:center; margin: 50px;"> Bạn cần đăng nhập.. </h1>
+    </div>
+
+</body>
+<script src="./js/cart.js"></script>
+</html>

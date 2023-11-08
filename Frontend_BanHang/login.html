@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="https://kit.fontawesome.com/e06076012c.js" crossorigin="anonymous"></script>
+    <title>Dang Nhap</title>
+</head>
+<script src="./js/angular.min.js"></script>
+
+<body ng-app="AppBanHang" ng-controller="LoginController">
+    <section class="wrapper">
+        <form id="login-form" ng-submit="login()" method="dialog">
+            <div class="title">Đăng nhập</div>
+            <div class="input-box">
+                <label for="taikhoan"><i class="fas fa-user"></i></label>
+                <input type="text" name="taikhoan" ng-model="tk" id="tk" placeholder="Nhập tên đăng nhập..." required>
+            </div>
+            <div class="input-box">
+                <label for="matkhau"><i class="fas fa-lock"></i></label>
+                <input type="password" name="matkhau" ng-model="mk" id="mk" placeholder="Nhập mật khẩu..." required>
+            </div>
+            <div class="miss-pass">
+                <a style="color: #fff; text-decoration: none" href="signup.html">Sign Up</a>
+            </div>
+            <button type="submit" value="Đăng nhập">Login</button>
+        </form>
+    </section>
+</body>
+<script>
+     var app = angular.module('AppBanHang', []);
+        app.controller("LoginController", function ($scope, $http) {
+            $scope.tk = '';
+            $scope.mk = '';
+            $scope.idUser;
+            $scope.currentUser = {};
+            $scope.isLogin = false;
+            $scope.login = function() {
+                const data = {
+                    username: $scope.tk,
+                    password: $scope.mk
+                }
+                $http({
+                    method: 'POST',
+                    url: "https://localhost:44306/api/User/login",
+                    data: JSON.stringify(data)
+                }).then(function (response) {
+                    $scope.idUser = response.data.mataikhoan;
+                    $scope.currentUser.token = response.data.token;
+                    console.log($scope.currentUser);
+                    $http({
+                        method: 'GET',
+                        headers: {
+                            Authorization: `Bearer ${$scope.currentUser.token}`
+                        },
+                        url: `https://localhost:44323/api/NguoiDung/get-detail/${$scope.idUser}`
+                    }).then(function(response) {
+                        console.log("Phan hoi: ", response.data);
+                        $scope.currentUser.maTaiKhoan = response.data.maTaiKhoan;
+                        $scope.currentUser.tenTaiKhoan = response.data.tenTaiKhoan;
+                        $scope.currentUser.matKhau = response.data.matKhau;
+                        $scope.currentUser.loaiTaiKhoan = response.data.loaiTaiKhoan;
+                        $scope.currentUser.email = response.data.email;
+                        $scope.currentUser.detail = response.data.list_json_chitiettaikhoan;
+                        if ($scope.currentUser.loaiTaiKhoan === 1) {
+                            window.location.href = "./admin/sanpham.html";
+                        } else if ($scope.currentUser.loaiTaiKhoan === 2) {
+                            window.location.href = "index.html";
+                        }
+                        var currentUserJSON = JSON.stringify($scope.currentUser);
+                        localStorage.setItem('currentUser', currentUserJSON);
+                    })
+                }).catch(err => {
+                    alert("Sai tài khoản hoặc mật khẩu");
+                    console.error("Loi khong ket noi: ", err);
+                })
+            }
+         
+        })
+</script>
+
+</html>
