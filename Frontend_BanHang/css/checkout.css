@@ -1,0 +1,97 @@
+.main {
+    max-width: 1220px;
+    margin-top: 65px;
+}
+
+.main .padding-form {
+    padding: 15px;
+}
+
+.main .row {
+    margin-top: 10px;
+}
+
+.main .title {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.main .note {
+    font-size: 14px;
+    color: black;
+    font-style: italic;
+}
+
+.main span {
+    color: red;
+}
+
+.main input {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1px solid #dbdbdb;
+}
+
+.main textarea {
+    max-width: 100%;
+    min-width: 20%;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #dbdbdb;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main .trace {
+    border-bottom: 3px solid #dbdbdb;
+    border-top: 3px solid #dbdbdb;
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+.main .pay {
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.main .pay:last-child {
+    border: none;
+}
+
+.main .pay button {
+    border: none;
+    background-color: #000000;
+    padding: 10px;
+    font-weight: bold;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.main .pay button:hover {
+    opacity: 0.7;
+}
+
+.main .payments {
+    margin: 14px 0px;
+}
+
+.main .radio-payments {
+    width: auto;
+    cursor: pointer;
+}
+
+.main .label-payments {
+    font-size: 14px;
+}
+
+.select {
+    display: flex;
+    align-items: center
+}
+
+input[type="radio"] {
+    height: 20px;
+    width: 20%;
+}
