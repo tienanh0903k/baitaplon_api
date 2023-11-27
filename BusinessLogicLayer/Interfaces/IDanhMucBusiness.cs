@@ -9,6 +9,8 @@ namespace BusinessLogicLayer
 {
     public partial interface IDanhMucBusiness
     {
+        List<DanhMucModel> GetAllDanhMuc();
         List<DanhMucModel> GetDanhMuc(string name);
+        List<DanhMucModel> GetSimilar(int tenDM);
     }
 }

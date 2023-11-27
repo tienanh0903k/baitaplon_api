@@ -11,5 +11,7 @@ namespace DataAccessLayer
     {
         List<TinTucModel> GetAllTinTuc();
         bool Create(TinTucModel model);
+        bool Update(TinTucModel model);
+        bool Delete(TinTucModel model);
     }
 }

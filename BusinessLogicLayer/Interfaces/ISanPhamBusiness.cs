@@ -9,10 +9,11 @@ namespace BusinessLogicLayer
 {
     public partial interface ISanPhamBusiness
     {
+        List<SanPhamModels> GetAll();
         SanPhamModels GetDatabyID(int id);
-
         bool Create(SanPhamModels model);
-        List<SanPhamModels> GetAll(string ten_cm);
+        //user
+        List<SanPhamModels> GetByTheLoai(int ten_cm);
         List<AllProducts> GetAllHome();
         public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp);
 

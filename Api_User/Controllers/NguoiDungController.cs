@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DataModel;
 using BusinessLogicLayer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api_User.Controllers
 {
@@ -33,11 +34,13 @@ namespace Api_User.Controllers
             return model;
         }
 
-        [Route("get-detail/{taiKhoan}")]
+        //yeu cau nguoi dung xac thuc
+        [Authorize]
+        [Route("get-detail/{maTK}")]
         [HttpGet]
-        public UserModel GetDetail(string taiKhoan)
+        public UserModel GetById(int maTK)
         {
-            return _userBusiness.GetDetail(taiKhoan);
+            return _userBusiness.GetById(maTK);
         }
 
 

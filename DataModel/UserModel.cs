@@ -7,8 +7,8 @@
         public string TenTaiKhoan { get; set; }
         public string MatKhau { get; set; }
         public string Email { get; set; }
-        public string token { get; set; }
-        public List<ChiTietTaiKhoan> ChiTietTaiKhoans { get; set; }
+        public string? token { get; set; }
+        public List<ChiTietTaiKhoan>? list_json_chitiettaikhoan { get; set; }
     }
 
     public class ChiTietTaiKhoan

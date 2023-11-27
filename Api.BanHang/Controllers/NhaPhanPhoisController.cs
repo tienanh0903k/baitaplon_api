@@ -13,6 +13,12 @@ namespace Api.BanHang.Controllers
         {
             _bus = bus;
         }
+        [HttpGet]
+        [Route("get-all")]
+        public List<NhaPhanPhois> GetAll()
+        {
+            return _bus.GetAll();
+        }
 
         [Route("create-npp")]
         [HttpPost]
@@ -20,7 +26,7 @@ namespace Api.BanHang.Controllers
         {
             _bus.Create(model);
             return model;
-        }
+        }   
 
         [Route("create-nhacc-sp")]
         [HttpPost]

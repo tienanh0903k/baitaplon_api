@@ -26,5 +26,14 @@ namespace BusinessLogicLayer
         {
             return _res.Create(model);
         }
+        public bool Update(TinTucModel model)
+        {
+            return _res.Update(model);
+        }
+        
+        public bool Delete(TinTucModel model)
+        {
+            return _res.Delete(model);
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace DataAccessLayer
         bool Create(KhachModel model);
         bool Update(KhachModel model);
         public List<KhachModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi);
+        bool Delete(KhachModel model);
     }
 }

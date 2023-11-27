@@ -9,6 +9,9 @@ namespace DataAccessLayer
 {
     public partial interface IDanhMucRepository
     {
+        List<DanhMucModel> GetAllDanhMuc();
         List<DanhMucModel> GetDanhMuc(string name);
+        List<DanhMucModel> GetSimilar(int maDM);
+
     }
 }

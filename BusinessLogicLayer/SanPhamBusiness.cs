@@ -19,28 +19,9 @@ namespace BusinessLogicLayer
             return _res.GetDatabyID(id);
         }
 
-        public List<SanPhamModels> GetAll(string ten_cm)
+        public List<SanPhamModels> GetByTheLoai(int ten_cm)
         {
-            string msgError = "";
-            try
-            {
-                if (string.IsNullOrEmpty(ten_cm))
-                {
-                    // Xử lý trường hợp ten_cm là null hoặc rỗng
-                    // Lấy tất cả sản phẩm hoặc thực hiện tương tự
-                    return _res.GetAll(null);
-                }
-                else
-                {
-                    // Xử lý trường hợp ten_cm có giá trị
-                    // Lấy sản phẩm theo danh mục hoặc thực hiện tương tự
-                    return _res.GetAll(ten_cm);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return _res.GetByTheLoai(ten_cm);
         }
 
         public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp)
@@ -59,6 +40,12 @@ namespace BusinessLogicLayer
         public List<AllProducts> GetAllHome()
         {
             return _res.GetAllHome();
+        }
+
+
+        public List<SanPhamModels> GetAll()
+        {
+            return _res.GetAll();
         }
     }
 }

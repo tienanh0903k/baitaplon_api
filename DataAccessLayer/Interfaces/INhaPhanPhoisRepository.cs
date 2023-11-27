@@ -9,6 +9,8 @@ namespace DataAccessLayer
 {
     public partial interface INhaPhanPhoisRepository
     {
+        //get 
+        public List<NhaPhanPhois> GetAll();
         public bool Create(NhaPhanPhois model);
 
 

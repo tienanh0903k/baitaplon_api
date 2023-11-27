@@ -16,6 +16,13 @@ namespace Api.BanHang.Controllers
         }
 
         [HttpGet]
+        [Route("get-all")]
+        public List<SanPhamModels> GetAll()
+        {
+            return _sanphamBusiness.GetAll();
+        }
+
+        [HttpGet]
         [Route("get-by-id/{id}")]
         public SanPhamModels GetDatabyID(int id)
         {

@@ -16,9 +16,18 @@ namespace BusinessLogicLayer
             _res = res;
         }
 
+        public List<DanhMucModel> GetAllDanhMuc()
+        {
+            return _res.GetAllDanhMuc();
+        }
         public List<DanhMucModel> GetDanhMuc(string name)
         {
             return _res.GetDanhMuc(name);
+        }
+
+        public List<DanhMucModel> GetSimilar(int tenDM)
+        {
+            return _res.GetSimilar(tenDM);
         }
     }
 }

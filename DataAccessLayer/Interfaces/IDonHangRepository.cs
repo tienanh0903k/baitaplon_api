@@ -9,6 +9,10 @@ namespace DataAccessLayer
 {
     public partial interface IDonHangRepository
     {
+        List<DonHangModel> GetDonHangById(int maDH);
+        List<DonHangModel> GetTrangThai(int trangthai);
         bool Create(DonHangModel model);
+
+        
     }
 }

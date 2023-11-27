@@ -18,7 +18,7 @@ namespace DataModel
         public int SoLuong { get; set; }
         public bool TrangThai { get; set; }
         public int LuotXem { get; set; }
-        public List<ChiTietSanPhamModel> list_json_chitietsanpham { get; set; }
+        public List<ChiTietSanPhamModel> list_json_ctsanpham { get; set; }
     }
 
 
@@ -30,7 +30,6 @@ namespace DataModel
         public string Anh2 { get; set; }
         public int MaNhaSanXuat { get; set; }
         public string MoTa { get; set; }
-        public string ChiTiet { get; set; }
 
     }
 

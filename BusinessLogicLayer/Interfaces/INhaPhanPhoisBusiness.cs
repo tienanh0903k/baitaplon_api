@@ -9,6 +9,7 @@ namespace BusinessLogicLayer
 {
     public partial interface INhaPhanPhoisBusiness
     {
+        public List<NhaPhanPhois> GetAll();
         bool Create(NhaPhanPhois model);
         bool Create(NhaPhanPhois_SanPham model);
     }

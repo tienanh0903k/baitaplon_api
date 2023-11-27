@@ -16,31 +16,11 @@ namespace Api_User.Controllers
         }
 
         [HttpGet]
-        [Route("DanhMuc")]
-        public IActionResult GetAllSanPhamByDanhMuc([FromQuery] string? TenChuyenMuc)
+        [Route("DanhMuc/{ten_cm}")]
+        public List<SanPhamModels> GetByTheLoai(int ten_cm)
         {
-            try
-            {
-                List<SanPhamModels> data = _bus.GetAll(TenChuyenMuc);
-
-                if (data != null && data.Count > 0)
-                {
-                    return Ok(data);
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
-            {
-                // Xử lý hoặc ghi log cho lỗi
-                return BadRequest("Lỗi: " + ex.Message);
-            }
+            return _bus.GetByTheLoai(ten_cm);
         }
-
-
-
 
 
         [Route("search")]

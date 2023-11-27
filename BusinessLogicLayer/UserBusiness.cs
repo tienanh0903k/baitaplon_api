@@ -24,9 +24,9 @@ namespace BusinessLogicLayer
         {
             return _res.GetAll();
         }
-        public UserModel GetDetail(string taiKhoan)
+        public UserModel GetById(int maTK)
         {
-            return _res.GetDetail(taiKhoan);
+            return _res.GetById(maTK);
         }
         public UserModel Login(string taikhoan, string matkhau)
         {
@@ -39,6 +39,7 @@ namespace BusinessLogicLayer
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
+                    new Claim(ClaimTypes.UserData, user.MaTaiKhoan.ToString()),
                     new Claim(ClaimTypes.Name, user.TenTaiKhoan.ToString()),
                     new Claim(ClaimTypes.StreetAddress, user.Email)
                 }),

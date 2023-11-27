@@ -15,6 +15,11 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+
+        public List<NhaPhanPhois> GetAll()
+        {
+            return _res.GetAll();
+        }
         public bool Create(NhaPhanPhois models)
         {
             return _res.Create(models);

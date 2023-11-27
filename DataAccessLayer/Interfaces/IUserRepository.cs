@@ -10,7 +10,7 @@ namespace DataAccessLayer
     public partial interface IUserRepository
     {
         List<UserModel> GetAll();
-        UserModel GetDetail(string taikhoan);
+        UserModel GetById(int maTK);
         bool Create(UserModel model);
         bool Update(UserModel model);
         bool Delete(UserModel model);

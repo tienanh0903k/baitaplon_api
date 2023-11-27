@@ -26,13 +26,13 @@ namespace DataAccessLayer
             }
         }
 
-        public UserModel GetDetail(string taikhoan)
+        public UserModel GetById(int maTK)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_account_login",
-                 "@tenTaiKhoan", taikhoan);
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_tk_get_chitiet",
+                 "@MaTaiKhoan", maTK);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<UserModel>().FirstOrDefault();

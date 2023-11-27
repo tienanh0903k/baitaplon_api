@@ -9,6 +9,8 @@ namespace BusinessLogicLayer
 {
     public partial interface IDonHangBusiness
     {
+        List<DonHangModel> GetDonHangById(int maDH);
+        List<DonHangModel> GetTrangThai(int trangthai);
         bool Create(DonHangModel model);
     }
 }

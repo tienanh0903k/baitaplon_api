@@ -10,6 +10,22 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public List<HoaDonModel> GetAll()
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_hoa_don_get_all");
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<HoaDonModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public HoaDonModel GetDatabyID(int id)
         {
             string msgError = "";
@@ -33,8 +49,10 @@ namespace DataAccessLayer
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_hoadon_create",
                 "@TenKH", model.TenKH,
+                "@MaDH", model.MaDonHang,
                 "@Diachi", model.Diachi,
                 "@TrangThai", model.TrangThai,
+                "@TongGia", model.TongGia,
                 "@list_json_chitiethoadon", model.list_json_chitiethoadon != null ? MessageConvert.SerializeObject(model.list_json_chitiethoadon) : null);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -63,6 +81,46 @@ namespace DataAccessLayer
                     throw new Exception(Convert.ToString(result) + msgError);
                 }
                 return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Delete(HoaDonModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_hoa_don_delete",
+                    "@MaHoaDon", model.MaHoaDon);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public List<HoaDonModel> SearchKH(string ten_khach, DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_hoa_don_get_all_test",
+                    "@ten_khach", ten_khach,
+                    "@fr_NgayTao", fr_NgayTao,
+                    "@to_NgayTao", to_NgayTao
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<HoaDonModel>().ToList();
             }
             catch (Exception ex)
             {

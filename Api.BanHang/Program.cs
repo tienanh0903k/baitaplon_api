@@ -26,6 +26,14 @@ builder.Services.AddTransient<INhaPhanPhoisRepository, NhaPhanPhoiRepository>();
 builder.Services.AddTransient<INhaPhanPhoisBusiness, NhaPhanPhoisBusiness>();
 builder.Services.AddTransient<ITinTucRepository, TinTucRepository>();
 builder.Services.AddTransient<ITinTucBussiness, TinTucBussiness>();
+builder.Services.AddTransient<IDanhMucRepository, DanhMucRepository>();
+builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
+builder.Services.AddTransient<IHoaDonNhapRepository, HoaDonNhapRepository>();
+builder.Services.AddTransient<IHoaDonNhapBusiness, HoaDonNhapBusiness>();
+builder.Services.AddTransient<IDonHangRepository, DonHangRepository>();
+builder.Services.AddTransient<IDonHangBusiness, DonHangBusiness>();
+
+
 
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;

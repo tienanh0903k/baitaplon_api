@@ -22,5 +22,10 @@ namespace Api_User.Controllers
         {
             return _bus.GetAllHome();
         }
+
+        
+
+
+
     }
 }

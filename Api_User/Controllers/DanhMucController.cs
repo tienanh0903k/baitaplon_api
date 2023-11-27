@@ -22,5 +22,13 @@ namespace Api_User.Controllers
         {
             return _danhmucBusiness.GetDanhMuc(name);
         }
+
+
+        [HttpGet]
+        [Route("get-similar/{maDM}")]
+        public List<DanhMucModel> GetSimilar(int maDM)
+        {
+            return _danhmucBusiness.GetSimilar(maDM);
+        }
     }
 }

@@ -16,7 +16,21 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-
+        public List<NhaPhanPhois> GetAll()
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_all_npp");
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<NhaPhanPhois>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public bool Create(NhaPhanPhois model)
         {
             string msgError = "";

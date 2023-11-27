@@ -53,5 +53,49 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+
+        public bool Update(TinTucModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_tin_tuc",
+                "@MaTinTuc", model.MaTinTuc,
+                "@TieuDe", model.TieuDe,
+                "@AnhDaiDien", model.AnhDaiDien,
+                "@TacGia", model.TacGia,
+                "@NgayTao", model.NgayTao);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public bool Delete(TinTucModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_tin_tuc_delete",
+                "@MaTinTuc", model.MaTinTuc
+                );
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

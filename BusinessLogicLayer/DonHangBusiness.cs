@@ -15,6 +15,15 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+        public List<DonHangModel> GetTrangThai(int trangthai)
+        {
+            return _res.GetTrangThai(trangthai);
+        }
+
+        public List<DonHangModel> GetDonHangById(int maDH)
+        {
+            return _res.GetDonHangById(maDH);
+        }
 
         public bool Create(DonHangModel model)
         {
