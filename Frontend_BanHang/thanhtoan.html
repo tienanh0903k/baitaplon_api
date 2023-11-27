@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logoCPT.png">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="./css/grid.css">
+    <link rel="stylesheet" href="./css/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="./js/hienthi.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <title>Thanh toán</title>
+</head>
+
+<body ng-app="AppBanHang" ng-controller="CheckOut">
+    <!-- <button onclick="topFunction()" id="myBtn"><i class="fas fa-angle-up"></i></button> -->
+    <script>addHeader()</script>
+    <section class="main">
+        <div class="row">
+            <div class="col-8 col-s-12 padding-form">
+                <div class="title">THÔNG TIN THANH TOÁN</div>
+                <div class="note">(<span>*</span>) Bắt buộc</div>
+                <form action="#" ng-submit="ThemDonHang($event)">
+                    <div class="row">
+                        <div class="col-12 col-s-12">
+                            <label for="txt_hoten">Họ tên: <span>*</span></label><br>
+                            <input type="text"  ng-model="TenKhachHang" id="txt_hoten" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-s-12">
+                            <label for="txt_sdt">Số điện thoại: <span>*</span></label><br>
+                            <input type="text" ng-model="SoDienThoai" id="txt_sdt">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-s-12">
+                            <label for="txt_email">Email:</label><br>
+                            <input type="text" ng-model="Email" id="txt_email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-s-12">
+                            <label for="txt_diachi">Địa chỉ: <span>*</span></label><br>
+                            <input id="txt_diachi" ng-model="DiaChi">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-s-12">
+                            <label for="txt_ghichu">Gioi tinh:</label><br>
+                            <div class="select">
+                                <input type="radio" ng-model="GioiTinh" value="true"> Nam
+                                <input type="radio" ng-model="GioiTinh" value="false"> Nữ
+                            </div>
+
+                        </div>
+                    </div>
+               
+            </div>
+            <div class="col-4 col-s-12 padding-form">
+                <div class="title">ĐƠN HÀNG</div>
+                <div class="row pay" style="border-bottom: 3px solid #dbdbdb;">
+                    <div class="col-6 col-s-12" style="text-align: left;">
+                        <label>Sản phẩm</label>
+                    </div>
+                    <div class="col-6 col-s-12" style="text-align: right;">
+                        <label>Tổng</label>
+                    </div>
+                </div>
+                <div id="spham"></div>
+                <div class="row pay" ng-repeat="x in donHangs">
+                    <div class="col-6 col-s-12" style="text-align: left;">
+                        <label>{{x.tenSanPham}} x {{x.quantity}}</label>
+                    </div>
+                    <div class="col-6 col-s-12" style="text-align: right;">
+                        <label>{{x.gia}}</label>
+                    </div>
+                </div>
+
+                <div class="row trace">
+                    <div class="col-6 col-s-12" style="text-align: left;">
+                        <label>Tổng</label>
+                    </div>
+                    <div class="col-6 col-s-12" style="text-align: right;">
+                        <label id="tt">{{total}}</label>đ
+                    </div>
+                </div>
+                <div class="row pay">
+                    <div class="col-12 col-s-12" style="text-align: left;">
+                        <button type="submit" >ĐẶT HÀNG</button>
+                    </div>
+                </div>
+                <div class="row pay">
+                    <form action="#" method="POST">
+                        <div class="payments">
+                            <input type="radio" id="tienmat" name="payments" value="tm" class="radio-payments">
+                            <label for="tienmat" class="label-payments">Thanh toán tiền mặt khi nhận hàng (tiền mặt /
+                                quẹt thẻ ATM, Visa, Master)</label>
+                        </div>
+                        <div class="payments">
+                            <input type="radio" id="chuyenkhoan" name="payments" value="ck" class="radio-payments">
+                            <label for="chuyenkhoan" class="label-payments">Thanh toán qua chuyển khoản qua tài khoản
+                                ngân hàng (khuyên dùng)</label>
+                            <input type="text" id="stk" placeholder="Nhập số tài khoản ngân hàng..."
+                                style="margin-top: 10px;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </form>
+        </div>
+    </section>
+
+</body>
+<script src="./js/checkout.js"></script>
+<script src="./js/checkAuth.js"></script>
+
+</html>

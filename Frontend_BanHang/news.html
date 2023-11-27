@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="./js/angular.min.js"></script>
+        <script src="./js/hienthi.js"></script>
+</head>
+<style>
+    .body-tintuc{
+	margin: 70px 50px 50px 90px;
+	width: 80%;
+	
+	
+}
+.tintuc-info{
+	height: 170px;
+	border-bottom: 1px solid #FCF;
+	margin-top: 5px;
+
+}
+.tintuc-info img{
+	border: 1px solid gray;
+	float: left;
+	margin-right: 10px;
+	padding:5px;
+	border-radius: 5px;
+	height:148px;
+	width:224px;
+}
+.tintuc-info a:hover{
+	color: #666;
+}
+.tintuc-info h5{
+	font-weight: 100;
+	font-style: italic;
+	color: gray;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+</style>
+<body ng-app="AppBanHang" ng-controller="HomeCtrl">
+    <script>addHeader()</script>
+    <div class="body-tintuc" ng-repeat="x in news">
+        <div class="tintuc-info">
+            <a href="http://doanhnghiepvn.vn/cong-nghe/danh-gia-smartphone-chip-s660-ram-8-gb-gia-6-99-trieu-tai-viet-nam/2018112603315443"
+                target="_blank">
+                <img src="{{ x.anhDaiDien }}">
+                <h2>{{x.tieuDe}}</h2>
+            </a>
+            <br />
+            <h5>{{x.tacGia}} &emsp;{{x.ngayTao}}</h5>
+        </div>
+    </div>
+
+
+    <footer style="
+                background-color: #333; 
+                color: #fff;
+                text-align: center;
+                padding: 10px 0; 
+            ">
+        <p>&copy; 2023 NTA Store. All rights reserved.</p>
+    </footer>
+</body>
+
+<script>
+
+     var app = angular.module('AppBanHang', []);
+
+
+        app.controller("HomeCtrl", function ($scope, $http) {
+            $scope.news = [];
+            $scope.LoadNews = function () {
+                $http({
+                    method: "GET",
+                    url: "https://localhost:44323/api/TinTuc/get-news",
+                }).then(function (response) {
+                    // Lưu dữ liệu từ API vào biến $scope.products
+                    console.log(response.data);
+                    $scope.news = response.data;
+                }).catch(function (error) {
+                    console.error("Lỗi khi tải dữ liệu sản phẩm:", error);
+                });
+            };
+            $scope.LoadNews();
+        });
+</script>
+</html>

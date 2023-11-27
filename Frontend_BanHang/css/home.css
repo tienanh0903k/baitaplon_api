@@ -1,0 +1,545 @@
+ /* Reset CSS để loại bỏ margin và padding mặc định */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+ }
+
+ body {
+    background-color:#f2efef7d ;
+    overflow-y: scroll;
+ }
+
+ /* Thiết lập giao diện header */
+ header {
+     background-color: #333;
+     color: #fff;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 10px 20px;
+     position: fixed;
+     top: 0;
+     right: 0;
+     left: 0;
+     z-index: 99;
+ }
+
+ /* Thiết lập giao diện logo */
+ .logo {
+     font-size: 24px;
+     font-weight: bold;
+     cursor: pointer;
+ }
+
+ /* Thiết lập giao diện thanh điều hướng */
+ nav ul {
+     list-style: none;
+     display: flex;
+ }
+
+ nav ul li {
+     margin-right: 20px;
+ }
+
+ nav ul li a {
+     color: #fff;
+     text-decoration: none;
+ }
+
+ /* Thiết lập giao diện nút tìm kiếm và nút giỏ hàng */
+ .search-cart {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+
+ .search {
+     display: flex;
+     background: #ffffff;
+     padding: 5px;
+ }
+
+ input {
+     font-size: 18px;
+     border: none;
+     outline: none;
+     padding: 5px;
+     height: 100%;
+ }
+
+ .search i {
+     color: #000;
+     font-size: 25px;
+     line-height: 35px;
+ }
+
+ .cart img {
+     width: 30px;
+     height: 30px;
+     cursor: pointer;
+ }
+
+ .cart a,
+ .user a {
+     color: #fff;
+ }
+
+ a {
+     text-decoration: none;
+     color: #fff;
+ }
+
+ /* sidebar */
+ /* Thiết lập kiểu dáng cho sidebar */
+ .sidebar {
+     background-color: #f5f5f5;
+     border: 1px solid #eaeaea;
+ }
+
+ /* Thiết lập kiểu dáng cho tiêu đề "Tin Tức" */
+ .sidebar h3 {
+     font-size: 18px;
+     margin-bottom: 10px;
+     color: #333;
+ }
+
+.sidebar h2 {
+    background: #333;
+    color: white;
+    padding: 12px;
+}
+
+ /* Thiết lập kiểu dáng cho danh sách tin tức */
+ .sidebar__news img {
+     padding: 0 5px 0 0;
+     width: 37px;
+     height: 30px;
+     float: left;
+ }
+ 
+
+  .sidebar__news h3 {
+    font-size:12px;
+  }
+ .list-content {
+     margin-left: 20px;
+ }
+
+.sidebar__news {
+    margin: 28px 0;
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 5px;
+    box-sizing: border-box;
+    margin-top: 65px;
+}
+
+ /* slider */
+/* Slideshow container */
+
+.mySlides {
+    display: none
+}
+
+img {
+    vertical-align: middle;
+}
+.slideshow-container {
+    position: relative;
+    margin: auto;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.option {
+    position: absolute;
+    right: 0;
+    top: 90%;
+    background: #c5c4c4;
+    color: #000;
+    margin: 1px 6px;
+    cursor: pointer;
+    font-size: 15px;
+    display:none;
+    z-index: 9;
+    width: 90px;
+
+}
+
+
+.option ul li {
+    list-style: none;
+    padding: 2px 6px;
+}
+
+.option ul li a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #000;
+}
+
+.option ul li:hover {
+    background: #7a7878;
+    color: #000;
+}
+
+.option:hover {
+    display: block;
+}
+.avatar-img {
+    position: relative;
+    height: 30px;
+    width: 30px;
+}
+
+.avatar-img::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 30px;
+    width: 74px;
+    height: 21px;
+
+}
+
+.avatar-img:hover + .option {
+    display: block;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* --phan trang--- */
+
+.pagination_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin-right: 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    color: #333;
+    border-radius: 3px;
+}
+
+.pagination a:hover {
+    background-color: #ccc;
+}
+
+.pagination a.active {
+    background: #333;
+    color: #fff;
+}
+
+
+/* danh muc */
+.category-menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.category-menu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    margin: 0 9%;
+}
+
+.category-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Đổi màu khi rê chuột qua liên kết danh mục */
+.category-menu a:hover {
+    color: #007bff;
+}
+
+button {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+
+
+
+
+.loading .img,
+.loading .text {
+    position: relative;
+    margin-bottom: 2px;
+    overflow: hidden;
+}
+
+
+.loading .img::before,
+.loading .text::before {
+    background: #dddddd;
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+
+.loading .img::after, .loading .text::after {
+    /* background: white; */
+    background: linear-gradient(to right, #dddddd, white 50%, #dddddd);
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    animation: skeletonLoad 2s infinite alternate;
+}
+
+@keyframes skeletonLoad {
+    from {
+        left: -50%;
+    } to {
+        left: 100%;
+    }
+}
+
+
+
+
+/* .active {
+    background: #9aabb1;
+} */
+
+
+ul.category-menu li.active a{
+    color: #127c9a;
+}
+
+
+/*----product *---*/
+.home-product {
+    margin-bottom: 12px;
+}
+
+.home-product-item {
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: var(--white-color);
+    border-radius: 2px;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease-in;
+    will-change: transform;
+}
+
+.home-product-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.05);
+}
+
+.home-product-item__img {
+    padding-top: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* co anh lai */
+    background-position: center;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+}
+
+.home-product-item__name {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #000;
+    line-height: 1.8rem;
+    margin: 10px 10px 6px;
+    height: 3.6rem;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* tai dong so 2*/
+}
+
+.home-product-item__price {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.home-product-item__price-old {
+    font-size: 17px;
+    color: #666;
+    text-decoration: line-through;
+}
+
+.home-product-item__price-now {
+    font-size: 22px;
+    color: #ac2e00;
+    margin-left: 8px;
+}
+
+.home-product-item__action {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 10px 0;
+    font-size: 1.2rem;
+}
+
+.home-product-item__like {
+    font-size: 1.3rem;
+}
+
+i.home-product-item__like-icon-fill {
+    display: none;
+    color: red;
+}
+
+.home-product-item__like--liked .home-product-item__like-icon-fill {
+    display: inline-block;
+}
+
+.home-product-item__like--liked .home-product-item__like-icon-null {
+    display: none;
+}
+
+.home-product-item__rating {
+    /* font-size: 0.4rem; */
+    transform: scale(0.8);
+    transform-origin: right;
+    color: #d5d5d5;
+    margin-left: auto;
+    position: relative;
+    top: -1px;
+}
+
+
+
+.home-product-item__star--gold {
+    color: rgb(216, 216, 108);
+}
+
+.home-product-item__sold {
+    font-size: 1.2rem;
+    color: orange;
+    margin-left: 6px;
+}
+
+.home-product-item__origin {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+
+}
+
+
+.home-product-item__fav {
+    position: absolute;
+    top: 10px;
+    left: -4px;
+    background-color: #dba000;
+    color: #ccc;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+    padding-right: 4px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.home-product-item__fav i {
+    font-size: 0.9rem;
+    margin: 0 2px 0 5px;
+    color: #fff;
+}
+
+.home-product-item__fav span {
+    color: #ffff;
+}
+
+.home-product-item__fav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    border-top: 3px solid currentColor;
+    border-left: 3px solid transparent;
+    filter: brightness(50%);
+    /* do sang */
+}
+
+
+
+ .home-product-item__origin button {
+     background-color: #000;
+     color: #fff;
+     border: none;
+     border-radius: 50%;
+     width: 25px;
+     height: 25px;
+     font-size: 1em;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+
+
+ .hidden {
+     display: none;
+ }

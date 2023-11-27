@@ -1,0 +1,562 @@
+ // $scope.products = [];
+            // $scope.LoadProducts = function () {
+            //     $http({
+            //         method: "GET",
+            //         url: "https://localhost:44323/api/Home/getAll-DM",
+            //     }).then(function (response) {
+                  
+            //         console.log(response.data);
+            //         $scope.products = response.data;
+            //     }).catch(function (error) {
+            //         console.error("Lỗi khi tải dữ liệu sản phẩm:", error);
+            //     });
+            // };
+            // $scope.LoadProducts();
+    
+    
+    
+    
+    
+    
+    
+     setTimeout(() => {
+                var productCards = document.getElementsByClassName('product-card');
+                for (var i = 0; i < productCards.length; i++) {
+                    productCards[i].classList.remove('loading');
+                }
+            }, 1000)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // fetch('https://localhost:44306/api/User/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        //     .then((response) => {
+        //         if (response.ok) {
+        //             alert("Đăng nhập thành công");
+        //             const data = response.json();
+        //             console.log(data.token);
+        //             //location.href = "./admin/tongquan.html"; // Chuyển hướng đến trang thành công
+        //         } else {
+        //             alert("Đăng nhập không thành công");
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.error(error);
+        //     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--header
+
+ <header>
+            <div class="logo">NTA Store</div>
+            <nav>
+                <ul>
+                    <li><a href="#"><strong>Trang chu</strong></a></li>
+                    <li><a href="./news.html">Tin tuc</a></li>
+                    <li><a href="#">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="search-cart">
+                <form id="login-form" method="dialog">
+                    <div class="search">
+                        <input id="inputTxt" type="text" placeholder="Tim kiem...">
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="user">
+                    <!-- <a href="./login.html"><i class="fa-solid fa-user"></i></a> -->
+                    <a href="">
+                        <img style="height: 35px;
+                        width: 35px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        " src="./img/avt.jpg" alt="">
+                    </a>
+                </div>
+
+                
+
+                <div class="cart">
+                    <a href="./card.html"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </header>
+
+
+
+
+
+
+
+
+
+
+
+let slideIndex=1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex +=n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex=n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides=document.getElementsByClassName("mySlides");
+    let dots=document.getElementsByClassName("dot");
+
+    if (n > slides.length) {
+        slideIndex=1
+    }
+
+    if (n < 1) {
+        slideIndex=slides.length
+    }
+
+    for (i=0; i < slides.length; i++) {
+        slides[i].style.display="none";
+    }
+
+    for (i=0; i < dots.length; i++) {
+        dots[i].className=dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display="block";
+
+}
+
+
+
+< !-- <div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div><div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div><div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div><div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div><div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div><div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div><div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div><div class="col-2-5"><div class="product-card"><img src="./img/bg.png" alt=""><a href="#"><h5>Iphone</h5></a><div><span>$299</span><button>+</button></div></div></div>-->
+
+h1 {
+    display: initial;
+}
+
+.header .icon {
+    color: white;
+    text-align: center;
+    display: none;
+    font-size: 25px;
+    margin: 8px 16px;
+}
+
+.header .icon:hover {
+    color: cyan;
+}
+
+@media screen and (max-width: 1023px) {
+    .main .category {
+        display: none;
+    }
+
+    .header a.icon {
+        float: left;
+        display: block;
+    }
+}
+
+.main .row .bx-left {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    margin-left: 0px;
+}
+
+.main .row .bx-left ul {
+    width: 100%;
+    left: 0px;
+    padding-left: 20px;
+    position: absolute;
+}
+
+.main .row .bx-left ul li {
+    list-style: none;
+    position: relative;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.main .row .bx-left li {
+    padding: 8px 8px 8px 0px;
+    font-size: 22px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.main .row .bx-left li:hover {
+    color: white;
+}
+
+.main .row .bx-left .closebtn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 24px;
+    margin-left: 50px;
+    color: #818181;
+}
+
+.main .row .bx-left .closebtn:hover {
+    color: white;
+}
+
+.header .box-login {
+    color: white;
+    font-size: 14px;
+    border-left: 1px solid;
+    padding: 15.5px 10px;
+    width: auto;
+    float: right;
+    cursor: pointer;
+}
+
+.header .box-login .box-login-bottom {
+    height: auto;
+    width: auto;
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 0px;
+}
+
+.header .box-login .box-login-bottom button {
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    background-color: #0483cc;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.header .box-login .box-login-bottom button:hover {
+    background-color: #295a77;
+}
+
+#box-t:hover #box-b {
+    display: block;
+}
+
+.main .row .category button {
+    display: block;
+    background-color: #f3f3f3;
+    color: black;
+    padding: 20px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.main .row .category button:hover {
+    background-color: #ddd;
+    border-right: 2px solid #00a2ff;
+}
+
+.main .row .category button.active {
+    background-color: #ccc;
+    border-right: 2px solid #00a2ff;
+}
+
+.main .row .tabcontent {
+    /* display: none; */
+    padding: 15px 10px 10px 10px;
+}
+
+.main .row .content .tabcontent .title {
+    font-weight: bold;
+    color: #00a2ff;
+    margin: 0px 0px 10px 0px;
+}
+
+.main .row .content .tabcontent .title button {
+    border: none;
+    color: white;
+    background-color: #00a2ff;
+    padding: 8px 5px;
+    float: right;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.main .row .content .tabcontent .title button:hover {
+    background-color: #0483cc;
+}
+
+.main .row .content .tabcontent .title hr {
+    border: 1px solid #00a2ff;
+    background-color: #00a2ff;
+    width: 250px;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+.main .row .content .tabcontent .row .margin-bot {
+    margin-bottom: 10px;
+}
+
+.main .row .content .tabcontent .row .padding-box {
+    padding: 10px 8px 0px 8px;
+}
+
+.main .row .content .tabcontent .row .padding-box label[for=name] {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.main .row .content .tabcontent .row .padding-box span {
+    font-size: 14px;
+}
+
+.main .row .content .tabcontent .row .padding-box label[for=txtright] {
+    font-size: 14px;
+}
+
+.main .row .content .tabcontent .row .padding-box .btn-changepass {
+    border: none;
+    width: 200px;
+    color: white;
+    border: 3px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.main .row .content .tabcontent .row .padding-box .btn-changepass:hover {
+    background-color: chocolate;
+}
+
+.main .row .content .tabcontent .row .padding-box input,
+select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.main .row .content .tabcontent .row .padding-box button {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #00a2ff;
+    color: white;
+}
+
+.main .row .content .tabcontent .row .padding-box button:hover {
+    background-color: #295a77;
+}
+
+.main .row .content .tabcontent .row .padding-box table {
+    width: 100%;
+}
+
+.main .row .content .tabcontent .row .padding-box table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.main .row .content .tabcontent .row .padding-box table input[type=checkbox] {
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+
+.main .row .content .tabcontent .row .padding-box table th,
+td {
+    padding: 5px 10px;
+}
+
+.main .row .content .tabcontent .row .padding-box td i {
+    cursor: pointer;
+    margin: 3px;
+    color: #0072b4;
+}
+
+.main .row .content .tabcontent .row .padding-box td i:hover {
+    color: orangered;
+}
+
+.main .row .content .tabcontent .row .padding-box table img {
+    width: 70px;
+    height: 70px;
+}
+
+.main .row .content .tabcontent .row .padding-box textarea {
+    max-width: 100%;
+    min-width: 30%;
+    min-height: 60px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    padding: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main .row .content .tabcontent hr {
+    border: 1px solid #ccc;
+    background-color: #ccc;
+    margin: 20px 0px 15px 0px;
+}
+
+.main .row .content .tabcontent .btn-form {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+.main .row .content .tabcontent .btn-form:hover {
+    opacity: 1;
+}
+
+.main .row .content .tabcontent .row .padding-box .box-sum {
+    width: 100%;
+    height: 65px;
+    background-color: #d9edf7;
+    border: 1px solid #bce8f1;
+    padding: 10px;
+}
+
+.main .row .content .tabcontent .row .padding-box .box-sum .box-left {
+    font-size: 16px;
+    float: left;
+}
+
+.main .row .content .tabcontent .row .padding-box .box-sum .box-left span {
+    color: red;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.main .row .content .tabcontent .row .padding-box .box-sum .box-right {
+    float: right;
+    margin-top: 9px;
+}
+
+.main .row .content .tabcontent .row .padding-box .box-sum .box-right button {
+    padding: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    font-size: 14px;
+    border: none;
+}
+
+.main .row .content .tabcontent .row .padding-box .box-sum .box-right button:hover {
+    background-color: #0483cc;
+}
+
+.main .row .content .tabcontent .row .table_chitiet {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+
+.main .row .content .tabcontent .row .table_chitiet th,
+.table_chitiet td {
+    border: none;
+}
+
+.main .row .content .tabcontent .row .box {
+    border-radius: 5px;
+    width: 100%;
+    min-height: 75px;
+    color: white;
+}
+
+.main .row .content .tabcontent .row .box .box-left {
+    font-size: 22px;
+    float: left;
+    padding: 20px;
+}
+
+.main .row .content .tabcontent .row .box .box-right {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 0px;
+    float: left;
+}
+
+.main .row .content .tabcontent .row .box2 {
+    border-radius: 5px;
+    width: 100%;
+    height: 180px;
+    margin-top: 15px;
+}
+
+.main .row .content .tabcontent .row .box2 .box2-top {
+    padding: 12px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.main .row .content .tabcontent .row .box2 .box2-bot {
+    padding: 12px 15px;
+    font-size: 14px;
+}
+
+.main .row .content .tabcontent .row .box2 .box2-bot .box2-bot-left {
+    float: left;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.main .row .content .tabcontent .row .box2 .box2-bot .box2-bot-right {
+    float: left;
+    width: 50%;
+    margin-bottom: 10px;
+    text-align: right;
+    text-decoration: underline;
+}

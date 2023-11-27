@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/logoCPT.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/click.js"></script>
+    <script src="/js/main.js"></script>
+    <title>Quản lý cửa hàng điện thoại NTASmart</title>
+    <script src="../js/angular.min.js"></script>
+    <script src="../admin/js/sanpham.js"></script>
+    <script src="../admin/js/check.js"></script>
+</head>
+
+<body ng-app="AppBanHang" ng-controller="AdminSanPham">
+    <section class="header">
+        <h1 style="">NTASPORTS</h1>
+        <div class="box-login" id="box-t">
+            Xin chào, <span id="ten_nv">Admin</span> <i class="fas fa-sort-down"></i>
+            <div class="box-login-bottom" id="box-b">
+                <button onclick="TTTaiKhoan()"><i class="fas fa-user-alt"></i> Tài khoản</button>
+                <button onclick="LogOut();"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+            </div>
+        </div>
+    </section>
+    <section class="main">
+        <div class="row">
+            <div class="col-1 col-s-12 category">
+                <button onclick="TongQuan()"><i class="fas fa-tachometer-alt"></i> Tổng quan</button>
+                <button onclick="LoaiSanPham()"><i class="fas fa-boxes"></i> Loại sản phẩm</button>
+                <button onclick="SanPham()"><i class="fas fa-barcode"></i> Sản phẩm</button>
+                <button class="active" onclick="NhaCungCap()"><i class="fas fa-truck"></i> Nhà phân phối</button>
+                <button onclick="KhachHang()"><i class="fas fa-users"></i> Khách hàng</button>
+                <button onclick="NhanVien()"><i class="fas fa-user"></i>Đơn hàng</button>
+                <button onclick="HoaDonNhap()"><i class="fas fa-file-import"></i> Hóa đơn nhập</button>
+                <button onclick="HoaDonBan()"><i class="fas fa-shopping-cart"></i> Hóa đơn bán</button>
+                <button onclick="TinTuc()"><i class="fas fa-newspaper"></i>Tài khoản</button>
+                <button onclick="ThietLap()"><i class="fas fa-cogs"></i> Thiết lập</button>
+            </div>
+            <div class="col-11 col-s-12 content">
+                <div class="col-4 col-s-12 content">
+                    <div class="tabcontent">
+                        <div class="title">
+                            <h2>Thông tin nhà phân phối</h2>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <form>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Mã nhà phân phối:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="masanpham"
+                                        placeholder="Nhập mã nhà phân phối...Tự động sinh nếu không nhập...">
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Tên nhà phân phối:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="tennhapp" placeholder="Nhập tên nhà phân phối...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Địa chỉ:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="diachi" placeholder="Nhập Địa chỉ...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Số điện thoại:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="sdt" placeholder="Nhập Số điện thoại...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Mô tả:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="giaban" placeholder="Nhập Mô tả...">
+                                </div>
+
+                                <button class=" " style="background-color: rgba(44, 140, 15, 0.8);"
+                                    onclick="ThemSanPham()">Thêm nhà phân phối</button>
+                                <button class="btn-form" style="background-color: rgba(227, 32, 21, 0.8);"
+                                    onclick="NhapMoi()">Nhập mới</button>
+                                <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);"
+                                    id="btnUpdate" onclick="CapNhat()">Cập nhật
+                                    thông tin</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-8 col-s-12">
+                    <div class="tabcontent">
+                        <div class="title">
+                            <h2>Danh sách nhà phân phối</h2>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-10 col-s-12 padding-box">
+                                <input type="text" id="search-customer"
+                                    placeholder="Nhập mã, tên hoặc số điện thoại khách hàng...">
+                            </div>
+                            <div class="col-2 col-s-12 padding-box">
+                                <button><i class="fas fas fa-search" aria-hidden="true"></i> Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table">
+                                <tr style="background: #ccc;">
+                                    <th>ID</th>
+                                    <th>Tên</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Phone</th>
+                                    <th>Mô tả</th>
+
+                                </tr>
+
+                                <tbody>
+                                    <tr ng-repeat="x in products">
+                                        <td>{{x.maSanPham}}</td>
+                                        <td>{{x.maChuyenMuc}}</td>
+                                        <td>{{x.tenSanPham}}</td>
+                                        <th>
+                                            <img style="width: 30px; height: 30px;" src="{{x.anhDaiDien}}">
+                                        </th>
+                                        <td>{{x.ngayTao | date:'yyyy-MM-dd'}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+</script>
+
+</html>

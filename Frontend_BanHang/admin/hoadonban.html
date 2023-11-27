@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/logoCPT.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/click.js"></script>
+    <script src="/js/main.js"></script>
+    <title>Quản lý cửa hàng điện thoại NTASmart</title>
+    <script src="../js/angular.min.js"></script>
+    <script src="../admin/js/sanpham.js"></script>
+    <script src="../admin/js/check.js"></script>
+</head>
+
+<body ng-app="AppBanHang" ng-controller="AdminSanPham">
+    <section class="header">
+        <h1 style="">NTASPORTS</h1>
+        <div class="box-login" id="box-t">
+            Xin chào, <span id="ten_nv">Admin</span> <i class="fas fa-sort-down"></i>
+            <div class="box-login-bottom" id="box-b">
+                <button onclick="TTTaiKhoan()"><i class="fas fa-user-alt"></i> Tài khoản</button>
+                <button onclick="LogOut();"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+            </div>
+        </div>
+    </section>
+    <section class="main">
+        <div class="row">
+            <div class="col-1 col-s-12 category">
+                <button onclick="TongQuan()"><i class="fas fa-tachometer-alt"></i> Tổng quan</button>
+                <button onclick="LoaiSanPham()"><i class="fas fa-boxes"></i> Loại sản phẩm</button>
+                <button onclick="SanPham()"><i class="fas fa-barcode"></i> Sản phẩm</button>
+                <button onclick="NhaCungCap()"><i class="fas fa-truck"></i> Nhà cung cấp</button>
+                <button onclick="KhachHang()"><i class="fas fa-users"></i> Khách hàng</button>
+                <button onclick="NhanVien()"><i class="fas fa-user"></i>Đơn hàng</button>
+                <button onclick="HoaDonNhap()"><i class="fas fa-file-import"></i> Hóa đơn nhập</button>
+                <button class="active" onclick="HoaDonBan()"><i class="fas fa-shopping-cart"></i> Hóa đơn bán</button>
+                <button onclick="TinTuc()"><i class="fas fa-newspaper"></i>Tài khoản</button>
+                <button onclick="ThietLap()"><i class="fas fa-cogs"></i> Thiết lập</button>
+            </div>
+            <div class="col-11 col-s-12 content">
+                <div class="col-4 col-s-12 content">
+                    <div class="tabcontent">
+                        <div class="title">
+                            <h2>Thông tin sản phẩm</h2>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <form>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Mã sản phẩm:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="masanpham"
+                                        placeholder="Nhập mã sản phẩm...Tự động sinh nếu không nhập...">
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Mã chuyên mục:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <!-- <input type="text" id="machuyenmuc"
+                                        placeholder="Nhập mã chuyên muc...Tự động sinh nếu không nhập..."> -->
+                                    <select>
+                                        <option value="">Chọn danh mục</option>
+                                        <option ng-repeat="item in selectItems" value="{{item.maChuyenMuc}}">
+                                            {{item.tenChuyenMuc}}</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Tên sản phẩm:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="tensanpham" placeholder="Nhập tên sản phẩm...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Hình ảnh:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="file" id="imgproduct" onchange="loadFile(event)">
+                                    <center>
+                                        <span style="float: left;">VIEW</span>
+                                        <img id="viewimg" style="max-width:180px;max-height:180px;margin-top: 10px;">
+                                    </center>
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Ngày tạo:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="ngaytao" placeholder="Nhập ngày tạo...">
+                                </div>
+
+                                <!-- <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Loại sản phẩm:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <select name="loaisp" id="loaisp">
+                                        <option value="choose">--Chọn loại sản phẩm--</option>
+                                        <option value="PC Đồ Họa - WORKSTATION">PC Đồ Họa - WORKSTATION</option>
+                                        <option value="PC Gaming, Streaming">PC Gaming, Streaming</option>
+                                        <option value="PC Văn Phòng, AIO, Mini PC">PC Văn Phòng, AIO, Mini PC</option>
+                                        <option value="Laptop, Máy Tính Xách Tay">Laptop, Máy Tính Xách Tay</option>
+                                        <option value="Màn Hình">Màn Hình</option>
+                                        <option value="Linh Kiện Máy Tính">Linh Kiện Máy Tính</option>
+                                        <option value="CPU - Bộ Vi Xử Lý">CPU - Bộ Vi Xử Lý</option>
+                                        <option value="Mainboard - Bo Mạch Chủ">Mainboard - Bo Mạch Chủ</option>
+                                        <option value="RAM - Bộ Nhớ Trong">RAM - Bộ Nhớ Trong</option>
+                                        <option value="Ổ Cứng HDD">Ổ Cứng HDD</option>
+                                        <option value="Ổ Cứng SSD">Ổ Cứng SSD</option>
+                                        <option value="ODD - Ổ đĩa quang">ODD - Ổ đĩa quang</option>
+                                        <option value="VGA - Card Màn Hình">VGA - Card Màn Hình</option>
+                                        <option value="Case - Vỏ Máy Tính">Case - Vỏ Máy Tính</option>
+                                        <option value="PSU - Nguồn Máy Tính">PSU - Nguồn Máy Tính</option>
+                                        <option value="Tản Nhiệt PC, Cooling">Tản Nhiệt PC, Cooling</option>
+                                        <option value="Gaming Gear">Gaming Gear</option>
+                                        <option value="Bàn Phím, Chuột">Bàn Phím, Chuột</option>
+                                        <option value="Bộ Bàn Phím Chuột">Bộ Bàn Phím Chuột</option>
+                                        <option value="Lót Chuột, Bàn Di Chuột">Lót Chuột, Bàn Di Chuột</option>
+                                        <option value="Tai Nghe">Tai Nghe</option>
+                                        <option value="Phụ Kiện Gaming">Phụ Kiện Gaming</option>
+                                        <option value="Phụ Kiện Laptop, PC, Khác">Phụ Kiện Laptop, PC, Khác</option>
+                                        <option value="Dây Cáp Các Loại">Dây Cáp Các Loại</option>
+                                        <option value="Thiết Bị Chuyển Đổi">Thiết Bị Chuyển Đổi</option>
+                                        <option value="Bộ Chia Tín Hiệu">Bộ Chia Tín Hiệu</option>
+                                        <option value="Linh Kiện Laptop">Linh Kiện Laptop</option>
+                                        <option value="Phụ Kiện Khác">Phụ Kiện Khác</option>
+                                    </select>
+                                </div> -->
+                                <!-- <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Nhà cung cấp:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <select name="nhacungcap" id="nhacungcap">
+                                        <option value="choose">--Chọn nhà cung cấp--</option>
+                                        <option value="Trần Anh">Trần Anh</option>
+                                        <option value="Tiên Tiến">Tiên Tiến</option>
+                                        <option value="Phúc Anh">Phúc Anh</option>
+                                        <option value="An Phát">An Phát</option>
+                                    </select>
+                                </div> -->
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Số lượng:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="number" id="slsp" placeholder="Nhập số lượng...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Giá bán:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="number" id="giaban" placeholder="Nhập giá bán...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Trạng thái:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input id="status" placeholder="Nhập giá bán...">
+                                </div>
+                                
+                                <button class=" " style="background-color: rgba(44, 140, 15, 0.8);"
+                                    onclick="ThemSanPham()">Thêm sản phẩm</button>
+                                <button class="btn-form" style="background-color: rgba(227, 32, 21, 0.8);"
+                                    onclick="NhapMoi()">Nhập mới</button>
+                                <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);"
+                                    id="btnUpdate" onclick="CapNhat()">Cập nhật
+                                    thông tin</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-8 col-s-12">
+                    <div class="tabcontent">
+                        <div class="title">
+                            <h2>Danh sách sản phẩm</h2>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-10 col-s-12 padding-box">
+                                <input type="text" id="search-customer"
+                                    placeholder="Nhập mã, tên hoặc số điện thoại khách hàng...">
+                            </div>
+                            <div class="col-2 col-s-12 padding-box">
+                                <button><i class="fas fas fa-search" aria-hidden="true"></i> Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table">
+                                <tr style="background: #ccc;">
+                                    <th>ID</th>
+                                    <th>Ma CM</th>
+                                    <th>Tên SP</th>
+                                    <th>Image</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Trang thai</th>
+
+                                </tr>
+
+                                <tbody>
+                                    <tr ng-repeat="x in products">
+                                        <td>{{x.maSanPham}}</td>
+                                        <td>{{x.maChuyenMuc}}</td>
+                                        <td>{{x.tenSanPham}}</td>
+                                        <th>
+                                            <img style="width: 30px; height: 30px;" src="{{x.anhDaiDien}}">
+                                        </th>
+                                        <td>{{x.ngayTao | date:'yyyy-MM-dd'}}</td>
+                                        <td>{{x.soLuong}}</td>
+                                        <td>{{x.gia}}</td>
+                                        <td>{{x.trangThai ? 'Đang bán' : 'Không bán'}}</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+</script>
+
+</html>
