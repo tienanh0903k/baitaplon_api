@@ -352,22 +352,97 @@ th {
 }
 
 table {
+    table-layout: fixed;
     border-collapse: collapse;
     width: 100%;
+    font-size: 12px;
+    max-height: 200px;
 }
+th,
+td {
 
-th, td {
-    
     height: 20px;
-  padding: 15px;
-  text-align: left;
+    padding: 10px;
+    text-align: center;
 }
 td {
     padding: 3px 15px;
 }
 
 
+
 .selected-page {
     background-color: #007bff;
     color: #fff;
 }
+
+.table-container {
+    max-height: 400px;
+    /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+.input-contaner {
+    
+}
+.option-btn {
+    text-align: center;
+}
+.option-btn button {
+    color: #e8e8e8;
+    outline: navajowhite;
+    border: none;
+    padding: 3px 5px;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 50px;
+    /* Điều chỉnh chiều rộng theo ý muốn */
+}
+
+.row .padding-box .box-sum {
+    width: 100%;
+    height: 65px;
+    background-color: #d9edf7;
+    border: 1px solid #bce8f1;
+    padding: 10px;
+}
+
+.row .padding-box .box-sum .box-left {
+    font-size: 16px;
+    float: left;
+}
+
+.row .padding-box .box-sum .box-left span {
+    color: red;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.row .padding-box .box-sum .box-right {
+    float: right;
+    margin-top: 9px;
+}
+
+
+.row .padding-box .box-sum .box-right button {
+    padding: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    font-size: 14px;
+    border: none;
+}
+
+.row .padding-box .box-sum .box-right button:hover {
+    background-color: #0483cc;
+}
+
+
+
+
+
+
+
+

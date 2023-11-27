@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/logoCPT.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/click.js"></script>
+    <title>Quản lý cửa hàng điện thoại NTASmart</title>
+    <script src="../js/angular.min.js"></script>
+    <script src="../admin/js/check.js"></script>
+</head>
+<style>
+    status {
+  padding: 5px 26px;
+}
+
+.col-3.col-s-12.padding-box {
+  margin: 0 22px;
+}
+</style>
+
+<body ng-app="AppBanHang" ng-controller="DetailHoaDonBan">
+    <section class="header">
+        <h1 style="">NTASPORTS</h1>
+        <div class="box-login" id="box-t">
+            Xin chào, <span id="ten_nv">Admin</span> <i class="fas fa-sort-down"></i>
+            <div class="box-login-bottom" id="box-b">
+                <button onclick="TTTaiKhoan()"><i class="fas fa-user-alt"></i> Tài khoản</button>
+                <button onclick="LogOut();"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+            </div>
+        </div>
+    </section>
+    <section class="main">
+        <div class="row">
+            <div class="col-12 col-s-12 content">
+                <div class="col-12 col-s-12 content">
+                    <div class="tabcontent">
+                        <div class="title">
+                            <h2>Thông tin chi tiết hoá đơn</h2>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <form action="#" ng-submit="ThemHoaDon($event)">
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Mã hoá đơn:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="masanpham"
+                                        placeholder="Nhập mã hoá đơn...."  ng-model="maHoaDon">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Tên khách hàng:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="tenkhachhang" ng-model="tenKhachHang"
+                                        placeholder="Nhập tên khách hàng...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Địa chỉ:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="diachi" ng-model="diaChi" placeholder="Nhập địa chỉ...">
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Ngày tạo:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="text" id="ngaytao" ng-model="ngaytao" placeholder="Nhập ngày tạo..."
+                                        required>
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Tổng:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input type="number" id="giaban" ng-model="tongtien" placeholder="Nhập giá bán...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Số điện thoại:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <input id="status" ng-model="sdt" placeholder="Nhập trang thai...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <h3 for="txtright">Sản phẩm khách hàng:</h3>
+                                </div>
+                            <div class="row">
+                                <div class="container">
+                                    <div class="col-3 col-s-12 ">
+                                        <label for="txtright">Mã sản phẩm:</label>
+                                        <select ng-model="maSanPhamChon" ng-change="CapNhatTenSanPham()">
+                                            <option value="" disabled selected>Chọn mã sản phẩm</option>
+                                            <option ng-repeat="sanPham in listSanPham" value="{{sanPham.maSanPham}}">{{sanPham.maSanPham}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3 col-s-12 padding-box">
+                                        <label for="txtright">Tên sản phẩm:</label>
+                                        <input id="status" ng-model="tenSanPham" placeholder="Tên sản phẩm..." readonly>
+                                    </div>
+                                    <div class="col-3 col-s-12 padding-box">
+                                        <label for="txtright">Số lượng:</label>
+                                        <input id="soLuong" min="0" ng-model="soLuong" type="number" placeholder="Số lượng...">
+                                    </div>
+                                </div>
+                            </div>
+
+                                <button type="submit" style="background-color: rgba(44, 140, 15, 0.8);">Thêm sản phẩm</button>
+                                <div class="row">
+                                    <table class="table_chitiet">
+                                        <tbody id="DSSanPham">
+                                            <tr style="background: #095b87; color: #fff;">
+                                                <th>Id</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Số lượng</th>
+                                                <th>Đơn giá</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            <tr ng-repeat="x in detailBill">
+                                                <td>{{x.maChiTietHoaDon}}</td>
+                                                <td>{{x.tenSanPham}}</td>
+                                                <td>{{x.soLuongXuat}}</td>
+                                                <td>{{x.tongGia}}</td>
+                                                <th>
+                                                    <i style="color: rgb(0, 153, 255)" class="fas fa-edit" title="Sửa" ng-click="SuaDonHang(x)"></i>
+                                                    <i style="color: red" class="fas fa-trash-alt" title="Xóa"></i>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);"
+                                    id="btnUpdate" onclick="CapNhat()">Cập nhật
+                                    thông tin</button>
+                                <button type="button" class="btn-form" style="background-color: rgba(109, 114, 124, 0.8);"
+                                    id="btnUpdate" ng-click="print()">In hóa đơn</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="../admin/js/chitiethoadonban.js"></script>
+</html>

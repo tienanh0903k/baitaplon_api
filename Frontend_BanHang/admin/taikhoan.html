@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/js/main.js"></script>
+    <script src="../js/angular.min.js"></script>
     <title>Quản lý cửa hàng điện thoại NTASmart</title>
 </head>
 
-<body>
+<body ng-app="AppBanHang" ng-controller="AdminTaiKhoan">
     <section class="header">
-        <h1 style="
-            ">NTASPORTS</h1>
+        <h1 style="">NTASPORTS</h1>
         <div class="box-login" id="box-t">
             Xin chào, <span id="ten_nv">Admin</span> <i class="fas fa-sort-down"></i>
             <div class="box-login-bottom" id="box-b">
@@ -43,99 +46,49 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <form class="form-action">
+                            <form ng-submit="ThemTaiKhoan()">
                                 <div class="col-12 col-s-12 padding-box">
-                                    <label foxr="txtright">Loại sản phẩm:</label>
+                                    <label for="txtright">Mã tài khoản:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <select name="loaisp" id="loaisp">
-                                        <option value="choose">--Chọn loại sản phẩm--</option>
-                                        <option value="PC Đồ Họa - WORKSTATION">PC Đồ Họa - WORKSTATION</option>
-                                        <option value="PC Gaming, Streaming">PC Gaming, Streaming</option>
-                                        <option value="PC Văn Phòng, AIO, Mini PC">PC Văn Phòng, AIO, Mini PC</option>
-                                        <option value="Laptop, Máy Tính Xách Tay">Laptop, Máy Tính Xách Tay</option>
-                                        <option value="Màn Hình">Màn Hình</option>
-                                        <option value="Linh Kiện Máy Tính">Linh Kiện Máy Tính</option>
-                                        <option value="CPU - Bộ Vi Xử Lý">CPU - Bộ Vi Xử Lý</option>
-                                        <option value="Mainboard - Bo Mạch Chủ">Mainboard - Bo Mạch Chủ</option>
-                                        <option value="RAM - Bộ Nhớ Trong">RAM - Bộ Nhớ Trong</option>
-                                        <option value="Ổ Cứng HDD">Ổ Cứng HDD</option>
-                                        <option value="Ổ Cứng SSD">Ổ Cứng SSD</option>
-                                        <option value="ODD - Ổ đĩa quang">ODD - Ổ đĩa quang</option>
-                                        <option value="VGA - Card Màn Hình">VGA - Card Màn Hình</option>
-                                        <option value="Case - Vỏ Máy Tính">Case - Vỏ Máy Tính</option>
-                                        <option value="PSU - Nguồn Máy Tính">PSU - Nguồn Máy Tính</option>
-                                        <option value="Tản Nhiệt PC, Cooling">Tản Nhiệt PC, Cooling</option>
-                                        <option value="Gaming Gear">Gaming Gear</option>
-                                        <option value="Bàn Phím, Chuột">Bàn Phím, Chuột</option>
-                                        <option value="Bộ Bàn Phím Chuột">Bộ Bàn Phím Chuột</option>
-                                        <option value="Lót Chuột, Bàn Di Chuột">Lót Chuột, Bàn Di Chuột</option>
-                                        <option value="Tai Nghe">Tai Nghe</option>
-                                        <option value="Phụ Kiện Gaming">Phụ Kiện Gaming</option>
-                                        <option value="Phụ Kiện Laptop, PC, Khác">Phụ Kiện Laptop, PC, Khác</option>
-                                        <option value="Dây Cáp Các Loại">Dây Cáp Các Loại</option>
-                                        <option value="Thiết Bị Chuyển Đổi">Thiết Bị Chuyển Đổi</option>
-                                        <option value="Bộ Chia Tín Hiệu">Bộ Chia Tín Hiệu</option>
-                                        <option value="Linh Kiện Laptop">Linh Kiện Laptop</option>
-                                        <option value="Phụ Kiện Khác">Phụ Kiện Khác</option>
+                                    <input type="text" id="mataikhoan" ng-model="maTaikhoan"
+                                        placeholder="Nhập mã tài khoản...Tự động sinh nếu không nhập...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label foxr="txtright">Loại tài khoản:</label>
+                                </div>
+                                <div class="col-12 col-s-12 padding-box">
+                                    <select ng-model="loaisp" name="loaisp">
+                                        <option>Chọn loai tk</option>
+                                        <option value="1">admin</option>
+                                        <option value="2">User</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Nhà cung cấp:</label>
+                                    <label for="txtright">Tên tài khoản:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <select name="nhacungcap" id="nhacungcap">
-                                        <option value="choose">--Chọn nhà cung cấp--</option>
-                                        <option value="Trần Anh">Trần Anh</option>
-                                        <option value="Tiên Tiến">Tiên Tiến</option>
-                                        <option value="Phúc Anh">Phúc Anh</option>
-                                        <option value="An Phát">An Phát</option>
-                                    </select>
+                                    <input type="text" id="tentaikhoan" ng-model="tentaikhoan" placeholder="Nhập tên tài khoản...">
+                                </div>
+
+                                <div class="col-12 col-s-12 padding-box">
+                                    <label for="txtright">Mật khẩu:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Mã sản phẩm:</label>
+                                    <input id="matkhau" ng-model="matkhau" placeholder="Nhập mật khẩu...">
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="text" id="masanpham"
-                                        placeholder="Nhập mã sản phẩm...Tự động sinh nếu không nhập...">
+                                    <label for="txtright">Email:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Hãng sản phẩm:</label>
+                                    <input id="email"  ng-model="email" placeholder="Nhập email...">
                                 </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <input type="text" id="tensanpham" placeholder="Nhập tên sản phẩm...">
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Hình ảnh:</label>
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <input type="file" id="imgproduct" onchange="loadFile(event)">
-                                    <center>
-                                        <span style="float: left;">View:</span>
-                                        <img id="viewimg" style="max-width:180px;max-height:180px;margin-top: 10px;">
-                                    </center>
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Số lượng:</label>
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <input type="number" id="slsp" placeholder="Nhập số lượng...">
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Giá bán:</label>
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <input type="number" id="giaban" placeholder="Nhập giá bán...">
-                                </div>
-                                <div class="button_option">
-                                    <button class=" " style="background-color: rgba(44, 140, 15, 0.8);"
-                                        onclick="ThemSanPham()">Thêm sản phẩm</button>
-                                    <button class="btn-form" style="background-color: rgba(227, 32, 21, 0.8);"
-                                        onclick="NhapMoi()">Nhập mới</button>
-                                    <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);"
-                                        id="btnUpdate" onclick="CapNhat()">Cập nhật
-                                        thông tin</button>
-                                </div>
+
+                                <button type="submit" style="background-color: rgba(44, 140, 15, 0.8);">Thêm tài khoản</button>
+                                <button type = "button" style="background-color: rgba(227, 32, 21, 0.8);" onclick="NhapMoi()">Nhập mới</button>
+                                <button type = "button" class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);" id="btnUpdate" onclick="CapNhat()">Cập nhật
+                                    thông tin</button>
                             </form>
                         </div>
                     </div>
@@ -146,7 +99,7 @@
                 <div class="col-8 col-s-12">
                     <div class="tabcontent">
                         <div class="title">
-                            <h2>Danh sách sản phẩm</h2>
+                            <h2>Danh sách tài khoản</h2>
                         </div>
                         <hr>
                         <div class="row">
@@ -159,10 +112,17 @@
                                     <th>Email</th>
                                     <th>Tuy chon</th>
                                 </tr>
-
-                                <tbody class="table-body">
-
-                                </tbody>
+                                <tr ng-repeat="x in taiKhoans">
+                                    <th>{{x.maTaiKhoan}}</th>
+                                    <th>{{x.loaiTaiKhoan === 1 ? 'admin' : 'user'}}</th>
+                                    <th>{{x.tenTaiKhoan}}</th>
+                                    <th>{{x.matKhau}}</th>
+                                    <th>{{x.email}}</th>
+                                    <th>    
+                                        <i style="color: rgb(0, 153, 255)" class="fas fa-edit" title="Sửa" ng-click="SuaDonHang(x)"></i>
+                                        <i style="color: red" class="fas fa-trash-alt" title="Xóa"></i>
+                                    </th>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -172,5 +132,5 @@
     </section>
 </body>
 <script src="../js/click.js"></script>
-<script src="../js/main.js"></script>
+<script src="../admin/js/taikhoan.js"></script>
 </html>

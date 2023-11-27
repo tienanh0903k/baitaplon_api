@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/logoCPT.png">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/e06076012c.js" crossorigin="anonymous"></script>
     <script src="/js/click.js"></script>
     <script src="/js/main.js"></script>
     <title>Quản lý cửa hàng điện thoại NTASmart</title>
@@ -46,42 +47,39 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <form>
+                            <form action="#" ng-submit="ThemSanPham($event)">
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Mã sản phẩm:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="text" id="masanpham"
+                                    <input type="text" id="masanpham" ng-model="maSanPham"
                                         placeholder="Nhập mã sản phẩm...Tự động sinh nếu không nhập...">
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Mã chuyên mục:</label>
                                 </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <!-- <input type="text" id="machuyenmuc"
-                                        placeholder="Nhập mã chuyên muc...Tự động sinh nếu không nhập..."> -->
-                                        <select>
-                                            <option value="">Chọn danh mục</option>
-                                            <option ng-repeat="item in selectItems" value="{{item.maChuyenMuc}}">{{item.tenChuyenMuc}}</option>
-                                        </select>
+                            <div class="col-12 col-s-12 padding-box">
+                                <select ng-model="selectedCategory" ng-options="item.tenChuyenMuc for item in selectItems">
+                                    <option value="">Chọn danh mục</option>
+                                </select>
+                            </div>
 
-                                </div>
 
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Tên sản phẩm:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="text" id="tensanpham" placeholder="Nhập tên sản phẩm...">
+                                    <input type="text" id="tensanpham" ng-model="tenSanPham" placeholder="Nhập tên sản phẩm...">
                                 </div>
 
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Hình ảnh:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="file" id="imgproduct" onchange="loadFile(event)">
+                                    <input type="file" id="imgproduct" ng-model="selectedFile" onchange="angular.element(this).scope().loadFile()">
                                     <center>
                                         <span style="float: left;">VIEW</span>
-                                        <img id="viewimg" style="max-width:180px;max-height:180px;margin-top: 10px;">
+                                        <img id="viewimg" style="max-width:180px; max-height:180px; margin-top: 10px;" ng-src="{{imageSource}}">
                                     </center>
                                 </div>
 
@@ -89,81 +87,32 @@
                                     <label for="txtright">Ngày tạo:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="text" id="ngaytao" placeholder="Nhập ngày tạo...">
+                                    <input type="text" id="ngaytao" ng-model="ngayTao" placeholder="Nhập ngày tạo...">
                                 </div>
-
-                                <!-- <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Loại sản phẩm:</label>
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <select name="loaisp" id="loaisp">
-                                        <option value="choose">--Chọn loại sản phẩm--</option>
-                                        <option value="PC Đồ Họa - WORKSTATION">PC Đồ Họa - WORKSTATION</option>
-                                        <option value="PC Gaming, Streaming">PC Gaming, Streaming</option>
-                                        <option value="PC Văn Phòng, AIO, Mini PC">PC Văn Phòng, AIO, Mini PC</option>
-                                        <option value="Laptop, Máy Tính Xách Tay">Laptop, Máy Tính Xách Tay</option>
-                                        <option value="Màn Hình">Màn Hình</option>
-                                        <option value="Linh Kiện Máy Tính">Linh Kiện Máy Tính</option>
-                                        <option value="CPU - Bộ Vi Xử Lý">CPU - Bộ Vi Xử Lý</option>
-                                        <option value="Mainboard - Bo Mạch Chủ">Mainboard - Bo Mạch Chủ</option>
-                                        <option value="RAM - Bộ Nhớ Trong">RAM - Bộ Nhớ Trong</option>
-                                        <option value="Ổ Cứng HDD">Ổ Cứng HDD</option>
-                                        <option value="Ổ Cứng SSD">Ổ Cứng SSD</option>
-                                        <option value="ODD - Ổ đĩa quang">ODD - Ổ đĩa quang</option>
-                                        <option value="VGA - Card Màn Hình">VGA - Card Màn Hình</option>
-                                        <option value="Case - Vỏ Máy Tính">Case - Vỏ Máy Tính</option>
-                                        <option value="PSU - Nguồn Máy Tính">PSU - Nguồn Máy Tính</option>
-                                        <option value="Tản Nhiệt PC, Cooling">Tản Nhiệt PC, Cooling</option>
-                                        <option value="Gaming Gear">Gaming Gear</option>
-                                        <option value="Bàn Phím, Chuột">Bàn Phím, Chuột</option>
-                                        <option value="Bộ Bàn Phím Chuột">Bộ Bàn Phím Chuột</option>
-                                        <option value="Lót Chuột, Bàn Di Chuột">Lót Chuột, Bàn Di Chuột</option>
-                                        <option value="Tai Nghe">Tai Nghe</option>
-                                        <option value="Phụ Kiện Gaming">Phụ Kiện Gaming</option>
-                                        <option value="Phụ Kiện Laptop, PC, Khác">Phụ Kiện Laptop, PC, Khác</option>
-                                        <option value="Dây Cáp Các Loại">Dây Cáp Các Loại</option>
-                                        <option value="Thiết Bị Chuyển Đổi">Thiết Bị Chuyển Đổi</option>
-                                        <option value="Bộ Chia Tín Hiệu">Bộ Chia Tín Hiệu</option>
-                                        <option value="Linh Kiện Laptop">Linh Kiện Laptop</option>
-                                        <option value="Phụ Kiện Khác">Phụ Kiện Khác</option>
-                                    </select>
-                                </div> -->
-                                <!-- <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Nhà cung cấp:</label>
-                                </div>
-                                <div class="col-12 col-s-12 padding-box">
-                                    <select name="nhacungcap" id="nhacungcap">
-                                        <option value="choose">--Chọn nhà cung cấp--</option>
-                                        <option value="Trần Anh">Trần Anh</option>
-                                        <option value="Tiên Tiến">Tiên Tiến</option>
-                                        <option value="Phúc Anh">Phúc Anh</option>
-                                        <option value="An Phát">An Phát</option>
-                                    </select>
-                                </div> -->
 
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Số lượng:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="number" id="slsp" placeholder="Nhập số lượng...">
+                                    <input type="number" id="slsp" ng-model="soLuong" placeholder="Nhập số lượng...">
                                 </div>
 
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Giá bán:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="number" id="giaban" placeholder="Nhập giá bán...">
+                                    <input type="number" id="giaban" ng-model="giaban" placeholder="Nhập giá bán...">
                                 </div>
 
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Trạng thái:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input id="status" placeholder="Nhập giá bán...">
+                                    <input id="status" ng-model="trangthai"  placeholder="Nhập trang thai...">
                                 </div>
 
-                                <button class=" " style="background-color: rgba(44, 140, 15, 0.8);"
-                                    onclick="ThemSanPham()">Thêm sản phẩm</button>
+                                <button type="submit" style="background-color: rgba(44, 140, 15, 0.8);"
+                                  >Thêm sản phẩm</button>
                                 <button class="btn-form" style="background-color: rgba(227, 32, 21, 0.8);"
                                     onclick="NhapMoi()">Nhập mới</button>
                                 <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);"
@@ -202,11 +151,11 @@
                                     <th>Số lượng</th>
                                     <th>Giá</th>
                                     <th>Trang thai</th>
-
+                                    <th>Thao tác</th>
                                 </tr>
 
                                 <tbody>
-                                    <tr ng-repeat="x in products">
+                                    <tr ng-repeat="x in products" ng-click="CellClick(x)">
                                         <td>{{x.maSanPham}}</td>
                                         <td>{{x.maChuyenMuc}}</td>
                                         <td>{{x.tenSanPham}}</td>
@@ -217,15 +166,26 @@
                                         <td>{{x.soLuong}}</td>
                                         <td>{{x.gia}}</td>
                                         <td>{{x.trangThai ? 'Đang bán' : 'Không bán'}}</td>
-
+                                        <td style="text-align: center;">
+                                            <i class="fas fa-edit" title="Sửa" onclick="SuaSanPham()"></i>
+                                            <i class="fas fa-trash-alt" title="Xóa"></i>
+                                        </td>
                                     </tr>
                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="pagination">
-                        <button ng-repeat="page in pages" ng-click="setPage(page)" ng-class="{ 'selected-page': page === currentPage }">{{page}}</button>
+                    <div class="col-12 col-s-12 padding-box">
+                        <div class="box-sum">
+                            <div class="box-left">Số lượng sản phẩm: <span id="soluong">{{totalItems}}</span></div>
+                            <div class="box-right">
+                            <div class="pagination">
+                                <button ng-repeat="page in pages" ng-click="setPage(page)"
+                                    ng-class="{ 'selected-page': page === currentPage }">{{page}}</button>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

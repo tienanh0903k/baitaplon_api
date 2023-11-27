@@ -302,7 +302,20 @@
 
 <script>
     var app = angular.module("AppBanHang", []);
-        app.controller("HomeCtrl", function ($scope, $http) {
+        app.controller("HomeCtrl", function ($scope, $http, AuthService) {
+            $scope.userInfo = AuthService.getUserInfo();
+            $scope.isLogin = false;
+            $scope.products = [];
+
+            $scope.CheckLogin = function () {
+                $scope.isLogin = AuthService.checkLogin();
+            };
+            $scope.CheckLogin();
+
+            $scope.logOut = function () {
+                AuthService.logOut();
+                $scope.isLogin = false;
+            };
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
             console.log(id);
@@ -346,28 +359,35 @@
                 products.quantity = 1;
 
                 if ($scope.isLogin) {
+                    var userInfo = AuthService.getUserInfo();
+                    var localId = userInfo ? userInfo.maTaiKhoan : null;
+
                     if (localStorage.getItem('cart') == null) {
-                        cart = [products];
+                        cart = [{ ...products, customerId: localId }];
                     } else {
                         cart = JSON.parse(localStorage.getItem('cart')) || [];
                         let ok = true;
+
                         for (let x of cart) {
-                            if (x.maSanPham === products.maSanPham) {
+                            if (x.maSanPham === products.maSanPham && x.customerId === localId) {
                                 x.quantity += 1;
                                 ok = false;
                                 break;
                             }
                         }
+
                         if (ok) {
-                            cart.push(products);
+                            cart.push({ ...products, customerId: localId });
                         }
                     }
+
                     localStorage.setItem('cart', JSON.stringify(cart));
                     alert("Đã thêm giỏ hàng thành công");
                 } else {
                     alert("Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng.");
                 }
-            }
+            };
+
 
 
 
@@ -416,5 +436,5 @@
 
     
 </script>
-
+<script src="./js/checkAuth.js"></script>
 </html>

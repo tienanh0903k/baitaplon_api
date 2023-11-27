@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        body {
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        tr {
+            line-height: 27px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .ngay {
+            font-style: italic;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .ban {
+            font-style: italic;
+            font-size: 15px;
+            margin: 3px 0px;
+        }
+
+        .dam {
+            font-weight: bold;
+        }
+
+        .le {
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .doi {
+            width: 50%;
+            float: left;
+        }
+
+        .ky {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .ky1 {
+            font-style: italic;
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+    <script src="../js/angular.min.js"></script>
+</head>
+
+<body ng-app="AppBanHang" ng-controller="DetailHoaDonBan" ng-init="inHoaDon()">
+    <section style="text-align: center;">
+        <h1>HÓA ĐƠN BÁN HÀNG</h1>
+        <div class="ban">(Bản thể hiện hóa đơn điện tử)</div>
+        <div class="ngay">
+            <p id="date"></p>
+
+        </div>
+    </section>
+
+    <div class="le dam">Tên đơn vị bán hàng: NTA Fashion Online</div>
+    <div class="le">Mã số thuế: 3269289058</div>
+    <div class="le">Địa chỉ: Toàn thắng, kim động , Hưng yên</div>
+    <div class="le doi">Điện thoại: 0948.098.195</div>
+    <div class="le doi">Số tài khoản: 762618652671614</div>
+    <div class="le dam">Người mua hàng: {{listBill.tenKH}}</div>
+    <div class="le">Email: abc@mail.com</div>
+    <div class="le">Điện thoại: 0987654321</div>
+    <div class="le">Địa chỉ: {{listBill.diachi}}</div>
+    <div class="le doi">Số tài khoản: 526716147626186</div>
+    <div class="le">Ghi chú: </div>
+    <table>
+
+        <tr style="background: #095b87; color: #fff;">
+            <th>Id</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+        </tr>
+        <tr ng-repeat="x in detailBill">
+            <td>{{x.maChiTietHoaDon}}</td>
+            <td>{{x.tenSanPham}}</td>
+            <td>{{x.soLuongXuat}}</td>
+            <td>{{x.tongGia}}</td>
+        </tr>
+
+        <tr> 
+            <td colspan= "3" class="dam">Tổng</td>
+            <td class="dam">{{listBill.tongGia}}</td>
+        </tr>
+    </table>
+    <div class="doi dam ky">Người mua hàng</div>
+    <div class="doi dam ky">Người bán hàng</div>
+    <div class="doi ky1">(Ký, ghi rõ họ tên)</div>
+    <div class="doi ky1">(Ký, ghi rõ họ tên)</div>
+</body>
+
+
+<script src="../admin/js/chitiethoadonban.js"></script>
+
+</html>
