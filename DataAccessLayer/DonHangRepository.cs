@@ -78,5 +78,67 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+
+        public bool Update(DonHangModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_donhang",
+                "@MaDonHang", model.MaDonHang,
+                "@NgayDat", model.NgayDat,
+                "@TrangThaiDonHang", model.TrangThaiDonHang);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //thong ke theo ngay
+        public List<ThongKeDon> GetDonHangByDay(DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_SoDonHangTheoNgay",
+                    "@fr_NgayTao", fr_NgayTao,
+                    "@to_NgayTao", to_NgayTao
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<ThongKeDon>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public List<TongQuan> GetTongQuan(DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_TongGiaNhapVaBanRa",
+                    "@fr_NgayTao", fr_NgayTao,
+                    "@to_NgayTao", to_NgayTao
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<TongQuan>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

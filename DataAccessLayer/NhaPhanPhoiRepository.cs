@@ -40,7 +40,6 @@ namespace DataAccessLayer
                 "@TenNhaPhanPhoi", model.TenNhaPhanPhoi,
                 "@DiaChi", model.DiaChi,
                 "@SoDienThoai", model.SoDienThoai,
-                "@Fax", model.Fax,
                 "@MoTa", model.MoTa);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -52,6 +51,50 @@ namespace DataAccessLayer
             {
                 throw ex;
             }
+        }
+
+        public bool Update(NhaPhanPhois model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_nha_phan_phoi",
+                "@MaNhaPhanPhoi", model.MaNhaPhanPhoi,
+                "@TenNhaPhanPhoi", model.TenNhaPhanPhoi,
+                "@DiaChi", model.DiaChi,
+                "@SoDienThoai", model.SoDienThoai,
+                "@MoTa", model.MoTa);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public bool Delete(NhaPhanPhois model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_npp_delete",
+                    "@MaNhaPhanPhoi", model.MaNhaPhanPhoi);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
 

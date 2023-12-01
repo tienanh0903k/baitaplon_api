@@ -29,5 +29,21 @@ namespace BusinessLogicLayer
         {
             return _res.Create(model); 
         }
+
+        public bool Update(DonHangModel model)
+        {
+            return _res.Update(model);
+        }
+
+        //thong ke
+        public List<ThongKeDon> GetDonHangByDay(DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            return _res.GetDonHangByDay(fr_NgayTao, to_NgayTao);
+        }
+
+        public List<TongQuan> GetTongQuan(DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            return _res.GetTongQuan(fr_NgayTao, to_NgayTao);
+        }
     }
 }

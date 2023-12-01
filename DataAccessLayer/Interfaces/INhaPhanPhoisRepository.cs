@@ -10,11 +10,12 @@ namespace DataAccessLayer
     public partial interface INhaPhanPhoisRepository
     {
         //get 
-        public List<NhaPhanPhois> GetAll();
-        public bool Create(NhaPhanPhois model);
+        List<NhaPhanPhois> GetAll();
+        bool Create(NhaPhanPhois model);
 
-
+        bool Update(NhaPhanPhois model);
+        bool Delete(NhaPhanPhois model);
         //Tao San Pham duoc phan phoi boi nha pp
-        public bool Create(NhaPhanPhois_SanPham model);
+        bool Create(NhaPhanPhois_SanPham model);
     }
 }

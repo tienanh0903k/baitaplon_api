@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 namespace BusinessLogicLayer
 {
     public partial interface ISanPhamBusiness
-    {
+    { 
         List<SanPhamModels> GetAll();
         SanPhamModels GetDatabyID(int id);
-        bool Create(SanPhamModels model);
+        bool Create(SanPhamModels model); 
+        bool Update(SanPhamModels model);
         //user
         List<SanPhamModels> GetByTheLoai(int ten_cm);
         List<AllProducts> GetAllHome();

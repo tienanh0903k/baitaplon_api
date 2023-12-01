@@ -32,8 +32,72 @@
       "UpstreamPathTemplate": "/api-admin/HoaDon-admin/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
 
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/HoaDonNhaps/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44306
+        }
+      ],
+      "UpstreamPathTemplate": "/api-admin/HoaDonNhaps-admin/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/DonHangs/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44306
+        }
+      ],
+      "UpstreamPathTemplate": "/api-admin/DonHangs-admin/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/SanPham/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44306
+        }
+      ],
+      "UpstreamPathTemplate": "/api-admin/SanPham-admin/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/NguoiDung/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44323
+        }
+      ],
+      "UpstreamPathTemplate": "/api-admin/NguoiDung-admin/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
     }
+
+    
+
+
   ],
+
 
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5183"

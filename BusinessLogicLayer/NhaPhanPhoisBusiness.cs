@@ -25,6 +25,17 @@ namespace BusinessLogicLayer
             return _res.Create(models);
         }
 
+        public bool Update(NhaPhanPhois model)
+        {
+            return _res.Update(model);
+        }
+
+
+        public bool Delete(int maNPP)
+        {
+            return _res.Delete(new NhaPhanPhois { MaNhaPhanPhoi = maNPP });
+        }
+
         public bool Create(NhaPhanPhois_SanPham models)
         {
             return _res.Create(models);

@@ -11,6 +11,8 @@ namespace BusinessLogicLayer
     {
         public List<NhaPhanPhois> GetAll();
         bool Create(NhaPhanPhois model);
+        bool Update(NhaPhanPhois model);
+        bool Delete(int maNPP);
         bool Create(NhaPhanPhois_SanPham model);
     }
 }

@@ -8,12 +8,13 @@ namespace DataModel
 {
     public class DonHangModel
     {
-        public KhachModel Khach { get; set; }
+        public KhachModel? Khach { get; set; }
         public DateTime NgayDat { get; set; }
         public int? MaDonHang { get; set; }
-        public int MaTK { get; set; }
+        public int? MaTK { get; set; }
+        public int? MaKH { get; set; }
         public string TrangThaiDonHang { get; set; }
-        public List<ChiTietDonHang> list_json_chitiet_donhang { get; set; }
+        public List<ChiTietDonHang>? list_json_chitiet_donhang { get; set; }
         public string? TenKH { get; set; }
         public string? DiaChi { get; set; }
         public List<KhachHangModel>? list_json_chitiet_khachhang { get; set; }

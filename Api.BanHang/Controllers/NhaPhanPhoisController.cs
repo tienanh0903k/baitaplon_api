@@ -26,7 +26,35 @@ namespace Api.BanHang.Controllers
         {
             _bus.Create(model);
             return model;
-        }   
+        }
+
+        [Route("update-npp")]
+        [HttpPut]
+        public NhaPhanPhois UpdateItem([FromBody] NhaPhanPhois model)
+        {
+            _bus.Update(model);
+            return model;
+        }
+
+        [Route("delete/{id}")]
+        [HttpDelete]
+        public IActionResult DeleteItem(int id)
+        {
+            bool result = _bus.Delete(id);
+            if (result)
+            {
+                return Ok(new
+                {
+                    message = "Xoa thanh cong"
+                });
+            }
+            else
+            {
+                return BadRequest("Xóa không thành công.");
+            }
+
+        }
+
 
         [Route("create-nhacc-sp")]
         [HttpPost]

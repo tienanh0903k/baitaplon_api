@@ -16,6 +16,7 @@ namespace Api_User.Controllers
             _userBusiness = userBusiness;
         }
         //api cho nguoi dung dang nhap
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthenticateModel model)
         {
@@ -35,7 +36,7 @@ namespace Api_User.Controllers
         }
 
         //yeu cau nguoi dung xac thuc
-        [Authorize]
+            
         [Route("get-detail/{maTK}")]
         [HttpGet]
         public UserModel GetById(int maTK)
