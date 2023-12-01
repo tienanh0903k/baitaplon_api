@@ -24,7 +24,7 @@ function NhaCungCap() {
 }
 
 function KhachHang() {
-  window.location.href = "../admin/KhachHang.html";
+  window.location.href = "../admin/khachhang.html";
 }
 
 function DonHang() {

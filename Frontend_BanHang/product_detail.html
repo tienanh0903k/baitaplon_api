@@ -143,7 +143,7 @@
     }
 
     .cart-btn {
-        background-color: #ff5e00;
+        background-color: rgb(3, 57, 82);
         margin-right: 20px;
     }
 
@@ -152,7 +152,7 @@
     }
 
     .cart-btn:hover {
-        background-color: #ff3c00;
+        background-color: rgb(46, 73, 85);
     }
 
     .buy-btn:hover {
@@ -239,7 +239,7 @@
             <div class="price">{{currentProduct.gia}} VNĐ</div>
             <div class="size">
                 <p>Size :</p>
-                <select id="size" ng-model="selectedSize">
+                <select>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -254,7 +254,7 @@
                 <input type="number" min="1" max="5" value="1">
             </div>
             <div class="btn-box">
-                <button class="cart-btn" ng-click="themGioHang(currentProduct)">Add to Cart</button>
+                <button class="cart-btn" ng-click="themGioHang(currentProduct)"><i class="fas fa-shopping-cart"></i>Add to Cart</button>
             </div>
         </div>
     </div>
@@ -287,7 +287,6 @@
             
                     <div class="home-product-item__origin">
                         <span class="home-product-item__brand">{{x.luotXem}} luot xem</span>
-                        <button>+</button>
                     </div>
             
                     <div class="home-product-item__fav">

@@ -14,6 +14,7 @@ app.controller("AdminSanPham", function ($scope, $http) {
   $scope.giaban;
   $scope.trangthai;
   $scope.tendanhmuc;
+  $scope.maChuyenMuc;
 
   $scope.selectedFile = null;
   $scope.imageSource = "";
@@ -42,11 +43,11 @@ app.controller("AdminSanPham", function ($scope, $http) {
     obj.page = $scope.currentPage;
     //so san phan tron 1 page
     obj.pageSize = $scope.pageSize;
-    obj.ten_sp = "";
+    obj.ten_sp = $scope.timKH;
     $http({
       method: "POST",
       data: JSON.stringify(obj),
-      url: "https://localhost:44323/api/GetSanPham/search",
+      url: "https://localhost:44306/api/SanPham/search-sp",
     }).then(function (response) {
       //tong ban ghi
       $scope.totalItems = response.data.totalItems;
@@ -71,8 +72,8 @@ app.controller("AdminSanPham", function ($scope, $http) {
   };
   $scope.getIndex();
 
-  $scope.selectItems = [];
 
+  $scope.selectItems = [];
   $scope.getCategory = function () {
     $http({
       method: "GET",
@@ -82,8 +83,9 @@ app.controller("AdminSanPham", function ($scope, $http) {
       console.log("Danh mục:", $scope.selectItems);
     });
   };
-
   $scope.getCategory();
+
+
 
   var currentUserJSON = localStorage.getItem("currentUser");
   $scope.currentUser = JSON.parse(currentUserJSON);
@@ -102,57 +104,81 @@ app.controller("AdminSanPham", function ($scope, $http) {
     window.location.href = "../index.html";
   }
 
-  $scope.Them = function (event) {
-    event.preventDefault();
-//     	{
-//   "maChuyenMuc": 2,
-//   "tenSanPham": "Ao nam day mua dong",
-//   "anhDaiDien": "string",
-//   "gia": 0,
-//  
-//   "ngayTao": "2023-11-10T05:51:18.275Z",
-//   "soLuong": 0,
-//   "trangThai": true,
-//   "luotXem": 0,
-//   "list_json_ctsanpham": [
-//     {
-
-//       "anh1": "string",
-//       "anh2": "string",
-//       "maNhaSanXuat": 3,
-//       "moTa": "string"
-//     }
-//   ]
-// }
-
-    // $http({
-    //   method: "POST",
-    //   data: {
-    //     tenSanPham : $scope.tenSanPham,
-    //     anhDaiDien: $scope.imageSource,
-    //     gia :$scope.giaban,
-    //     ngayTao: $scope.currentDate = new Date(),
-    //     soLuong :$scope.soLuong,
-    //     trangThai:$scope.trangthai,
-    //      :$scope.tendanhmuc,
-    //     TenSanPham: $scope.tenSP,
-    //   }})
+  
+  $scope.Them = function () {
+    var maChuyenMuc = parseInt($scope.selectedCategory, 10);
+    $http({
+      method: "POST",
+      url: "https://localhost:44306/api/SanPham/create-sp",
+      data: {
+        maChuyenMuc: maChuyenMuc,
+        tenSanPham: $scope.tenSanPham,
+        anhDaiDien: $scope.imageSource,
+        gia: $scope.giaban,
+        ngayTao: $scope.ngayTao,
+        soLuong: $scope.soLuong,
+        trangThai: $scope.trangthai === "true" ? true : false,
+      },
+    }).then(function (res) {
+      if(res.status === 200) {
+        alert('Them thanh cong');
+      }
+    });
 
   };
 
-  $scope.CellClick = function (product) {
-    $scope.maSanPham = product.maSanPham;
-    $scope.tenSanPham = product.tenSanPham;
-    $scope.ngayTao = product.ngayTao;
-    $scope.soLuong = product.soLuong;
-    $scope.giaban = product.gia;
-    $scope.trangthai = product.trangThai;
-    $scope.imageSource = product.anhDaiDien;
-    $scope.tendanhmuc = product.tenChuyenMuc;
-    $scope.selectedCategory = $scope.selectItems.find(
-      (item) => item.maChuyenMuc === product.maChuyenMuc
-    );
+  $scope.Sua = function(x) {
+    $scope.maSanPham = x.maSanPham;
+    $scope.tenSanPham = x.tenSanPham;
+     $scope.ngayTao = new Date(x.ngayTao);
+    $scope.soLuong = x.soLuong;
+    $scope.giaban = x.gia;
+    $scope.trangthai = x.trangThai;
+    $scope.imageSource = x.anhDaiDien;
+    $scope.selectedCategory = x.maChuyenMuc.toString();
+    console.log(x);
+  }
+
+
+  //sua
+  $scope.CapNhat = function () {
+    var maChuyenMuc = parseInt($scope.selectedCategory, 10);
+    $http({
+      method: "PUT",
+      url: "https://localhost:44306/api/SanPham/update-sp",
+      data: {
+        maSanPham: $scope.maSanPham,
+        maChuyenMuc: maChuyenMuc,
+        tenSanPham: $scope.tenSanPham,
+        anhDaiDien: $scope.imageSource,
+        gia: $scope.giaban,
+        ngayTao: $scope.ngayTao,
+        soLuong: $scope.soLuong,
+        trangThai: $scope.trangthai === "true" ? true : false,
+      },
+    }).then(function (res) {
+      if (res.status === 200) {
+        alert("Sửa thanh cong");
+      }
+    });
   };
+
+
+  $scope.Xoa = function (x) {
+    var r = confirm("Bạn có chắc muốn xóa không?")
+    if (r == true) {
+      $http({
+        method: "DELETE",
+        url: "https://localhost:44306/api/SanPham/delete-sp/" + x.maSanPham,
+      }).then(function(res) {
+        if (res.status === 200) {
+          alert("Xoa thanh cong");
+        }
+      }) 
+    }
+    
+  };
+
 });
 
 

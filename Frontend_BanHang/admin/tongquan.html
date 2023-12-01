@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/logoCPT.png">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="/js/click.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/angular.min.js"></script>
     <title>Quản lý cửa hàng điện thoại NTASmart</title>
 </head>
 
-<body>
+<body ng-app="AppBanHang" ng-controller="Dashboard">
     <section class="header">
         <h1 style="
             ">NTASPORTS</h1>
@@ -25,29 +30,44 @@
     <section class="main">
         <div class="row">
             <div class="col-1 col-s-12 category">
-                <button class="active" onclick="TongQuan()"><i class="fas fa-tachometer-alt"></i> Tổng quan</button>
-                <button onclick="LoaiSanPham()"><i class="fas fa-boxes"></i> Loại sản phẩm</button>
-                <button onclick="SanPham()"><i class="fas fa-barcode"></i> Sản phẩm</button>
-                <button onclick="NhaCungCap()"><i class="fas fa-truck"></i> Nhà cung cấp</button>
-                <button onclick="KhachHang()"><i class="fas fa-users"></i> Khách hàng</button>
-                <button onclick="NhanVien()"><i class="fas fa-user"></i> Nhân viên</button>
-                <button onclick="HoaDonNhap()"><i class="fas fa-file-import"></i> Hóa đơn nhập</button>
-                <button onclick="HoaDonBan()"><i class="fas fa-shopping-cart"></i> Hóa đơn bán</button>
-                <button onclick="TinTuc()"><i class="fas fa-newspaper"></i>Tài khoản</button>
-                <button onclick="ThietLap()"><i class="fas fa-cogs"></i> Thiết lập</button>
+                <button class="active" onclick="TongQuan()">Tổng quan</button>
+                <button onclick="LoaiSanPham()"> Loại sản phẩm</button>
+                <button onclick="SanPham()"> Sản phẩm</button>
+                <button onclick="NhaCungCap()"> Nhà cung cấp</button>
+                <button onclick="KhachHang()"> Khách hàng</button>
+                <button onclick="DonHang()"></i>Đơn hàng</button>
+                <button onclick="HoaDonNhap()"> Hóa đơn nhập</button>
+                <button onclick="HoaDonBan()"> Hóa đơn bán</button>
+                <button onclick="TinTuc()">Tài khoản</button>
+                <button onclick="ThietLap()"> Thiết lập</button>
             </div>
             <div class="col-11 col-s-12 content">
                 <div class="col-12 col-s-12 content">
                     <div class="tabcontent">
                         <div class="title">
-                            <i class="fas fa-signal"></i> Hoạt động hôm nay
+                            <i class="fas fa-signal"></i> Tổng quan bán hàng
                             <hr>
                         </div>
                         <div class="row">
+                            <div class="row">
+                                <div class="col-4 col-s-6 padding-box">
+                                    <label for="fromDate">Từ ngày:</label>
+                                    <input type="date" id="fromDate" name="fromDate" ng-model="fromDate">
+                                </div>
+                                <div class="col-4 col-s-6 padding-box">
+                                    <label for="toDate">Đến ngày:</label>
+                                    <input type="date" id="toDate" name="toDate" ng-model="toDate">
+                                </div>
+                                <div class="col-4 search-btn">
+                                    <button ng-click="TimKiem()"><i class="fas fas fa-search" aria-hidden="true"></i> Tìm kiếm</button>
+                                </div>
+                            </div>
+
                             <div class="col-4 col-s-12 padding-box">
-                                <div class="box" style="background-color: #9abc32;">
-                                    <div class="box-left"><i class="fas fa-signal"></i></div>
-                                    <div class="box-right">Tiền bán hàng<br><span>0</span>đ</div>
+                                <div class="box" style="background-color: #3c6f44;">
+                                    <div class="box-left"><i class="fa-brands fa-bitcoin"></i></div>
+                                    <div style="font-size: 20px; color: #fff" class="box-right">Tiền nhập hàng: <span>{{tienNhap}}</span>đ</div>
+                                    <div class="box-right">Tiền bán hàng: <span>0</span>đ</div>
                                 </div>
                             </div>
                             <div class="col-4 col-s-12 padding-box">
@@ -62,68 +82,138 @@
                             <div class="col-4 col-s-12 padding-box">
                                 <div class="box" style="background-color: #D53F;">
                                     <div class="box-left"><i class="fas fa-undo-alt"></i></div>
-                                    <div class="box-right">Khách hàng trả<br><span>0</span></div>
+                                    <div class="box-right">Chưa thanh toán:<br><span>0</span></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-4 col-s-12 padding-box">
-                                <div class="box2" style="border: 1px solid #6FB3E0;">
-                                    <div class="box2-top" style="border-bottom: 1px solid #6FB3E0;">
-                                        <i class="fas fa-signal"></i> Hoạt động
-                                    </div>
-                                    <div class="box2-bot">
-                                        <div class="box2-bot-left">Tiền bán hàng</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Số đơn hàng</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Số sản phẩm</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Khách trả hàng</div>
-                                        <div class="box2-bot-right">0</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 col-s-12 padding-box">
-                                <div class="box2" style="border: 1px solid #E8B110;">
-                                    <div class="box2-top" style="border-bottom: 1px solid #E8B110;">
-                                        <i class="fas fa-boxes"></i> Thông tin kho
-                                    </div>
-                                    <div class="box2-bot">
-                                        <div class="box2-bot-left">Tồn kho</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Hết hàng</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Sắp hết hàng</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Vượt định mức</div>
-                                        <div class="box2-bot-right">0</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 col-s-12 padding-box">
-                                <div class="box2" style="border: 1px solid #9ABC32;">
-                                    <div class="box2-top" style="border-bottom: 1px solid #9ABC32;">
-                                        <i class="fas fa-boxes"></i> Thông tin sản phẩm
-                                    </div>
-                                    <div class="box2-bot">
-                                        <div class="box2-bot-left">Sản phẩm</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Chưa làm giá bán</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Chưa nhập giá mua</div>
-                                        <div class="box2-bot-right">0</div>
-                                        <div class="box2-bot-left">Hàng chưa phân loại</div>
-                                        <div class="box2-bot-right">0</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  
                     </div>
+                </div>
+                <div class="row">
+                    <!-- <table class="table">
+                        <tr style="background: #095b87; color: #fff;">
+                            <th>Mã HDB</th>
+                            <th>Khách hàng</th>
+                            <th>Số điện thoại</th>
+                            <th>Mã đơn</th>
+                            <th>Địa chỉ</th>
+                            <th>Tổng tiền</th>
+                            <th>Ngày tạo</th>
+                            <th>Thao tác</th>
+                        </tr>
+                
+                        <tbody>
+                            <tr ng-repeat="x in listHoaDon">
+                                <td>{{x.maHoaDon}}</td>
+                                <td>{{x.tenKH}}</td>
+                                <td>{{x.sdt}}</td>
+                                <td>{{x.maDonHang}}</td>
+                                <td>{{x.diachi}}</td>
+                                <td>{{x.tongGia}}</td>
+                                <td>{{x.ngayTao | date:'yyyy-MM-dd'}}</td>
+                                <th>
+                                    <i style="color: rgb(0, 153, 255)" class="fas fa-edit" title="Sửa" ng-click="Sua(x)"></i>
+                                    <i style="color: red" class="fas fa-trash-alt" title="Xóa" ng-click="Xoa(x)"></i>
+                                    <i style="color: rgb(110, 102, 102)" class="fa-solid fa-circle-info" title="chi tiet"
+                                        ng-click="ChiTietHoaDon(x)"></i>
+                                </th>
+                            </tr>
+                
+                        </tbody>
+                    </table> -->
+                    <canvas id="myChart"
+                        style="
+                            width: 100%;
+                            max-height: 30rem;
+                        "
+                    ></canvas>
                 </div>
             </div>
         </div>
     </section>
 </body>
+<script>
+   var app = angular.module("AppBanHang", []);
+    app.controller("Dashboard", function ($scope, $http) {
+        $scope.fromDate = '2023-01-01';
+        $scope.toDate = '2023-12-31';
+        $scope.listDonHang;
 
+        $scope.tienNhap = 0;
+        $scope.tienBan;
+        $scope.soDon;
+        $scope.soSanPham;
+
+        $scope.getDonHangByDay = function () {
+            $http({
+                method: "POST",
+                url: "https://localhost:44306/api/DonHangs/getByDay",
+                data: {
+                    "fr_NgayTao": $scope.fromDate,
+                    "to_NgayTao": $scope.toDate
+                }
+            }).then(function (response) {
+                console.log(response.data.data);
+                $scope.listDonHang = response.data.data;
+                renderChart();
+            });
+        };
+
+
+        $scope.getTongQuan = function() {
+            $http({
+                method: "POST",
+                url: "https://localhost:44306/api/DonHangs/getTongQuan",
+                data: {
+                    "fr_NgayTao": $scope.fromDate,
+                    "to_NgayTao": $scope.toDate
+                }
+            }).then(function (response) {
+                console.log(response.data.data);
+                $scope.listInfo = response.data.data;
+                $scope.tienNhap = $scope.listInfo[0].tongGiaNhap || 0;
+                console.log($scope.tienNhap);
+            });
+        }
+
+        $scope.getDonHangByDay();
+        $scope.getTongQuan();
+
+        $scope.TimKiem = function () {
+            $scope.getDonHangByDay();
+            $scope.getTongQuan();
+        };
+        
+
+        function renderChart() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+
+            if ($scope.chart) {
+                $scope.chart.destroy();
+            }
+
+            $scope.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: $scope.listDonHang.map(item => item.ngay),
+                    datasets: [{
+                        label: 'Số Đơn Hàng',
+                        data: $scope.listDonHang.map(item => item.soDonHang),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    });
+
+</script>
 </html>

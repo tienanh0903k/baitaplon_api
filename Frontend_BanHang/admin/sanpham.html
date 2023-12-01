@@ -28,16 +28,16 @@
     <section class="main">
         <div class="row">
             <div class="col-1 col-s-12 category">
-                <button onclick="TongQuan()"><i class="fas fa-tachometer-alt"></i> Tổng quan</button>
-                <button onclick="LoaiSanPham()"><i class="fas fa-boxes"></i> Loại sản phẩm</button>
-                <button class="active" onclick="SanPham()"><i class="fas fa-barcode"></i> Sản phẩm</button>
-                <button onclick="NhaCungCap()"><i class="fas fa-truck"></i> Nhà cung cấp</button>
-                <button onclick="KhachHang()"><i class="fas fa-users"></i> Khách hàng</button>
-                <button onclick="NhanVien()"><i class="fas fa-user"></i>Đơn hàng</button>
-                <button onclick="HoaDonNhap()"><i class="fas fa-file-import"></i> Hóa đơn nhập</button>
-                <button onclick="HoaDonBan()"><i class="fas fa-shopping-cart"></i> Hóa đơn bán</button>
-                <button onclick="TinTuc()"><i class="fas fa-newspaper"></i>Tài khoản</button>
-                <button onclick="ThietLap()"><i class="fas fa-cogs"></i> Thiết lập</button>
+                <button onclick="TongQuan()"> Tổng quan</button>
+                <button onclick="LoaiSanPham()"> Loại sản phẩm</button>
+                <button class="active" onclick="SanPham()"> Sản phẩm</button>
+                <button onclick="NhaCungCap()"> Nhà cung cấp</button>
+                <button onclick="KhachHang()"> Khách hàng</button>
+                <button onclick="DonHang()">Đơn hàng</button>
+                <button onclick="HoaDonNhap()"> Hóa đơn nhập</button>
+                <button onclick="HoaDonBan()"> Hóa đơn bán</button>
+                <button onclick="TinTuc()">Tài khoản</button>
+                <button onclick="ThietLap()"> Thiết lập</button>
             </div>
             <div class="col-11 col-s-12 content">
                 <div class="col-4 col-s-12 content">
@@ -47,7 +47,7 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <form action="#" ng-submit="ThemSanPham($event)">
+                            <form action="#">
                                 <div class="col-12 col-s-12 padding-box">
                                     <label for="txtright">Mã sản phẩm:</label>
                                 </div>
@@ -56,13 +56,15 @@
                                         placeholder="Nhập mã sản phẩm...Tự động sinh nếu không nhập...">
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <label for="txtright">Mã chuyên mục:</label>
+                                    <label for="txtright">Chuyên mục:</label>
+                                </div>  
+                                <div class="col-12 col-s-12 padding-box">
+                                    <select ng-model="selectedCategory">
+                                        <option value=""  selected>Chọn danh mục</option>
+                                        <option ng-repeat="item in selectItems" value="{{item.maChuyenMuc}}">{{item.tenChuyenMuc}}</option>
+                                    </select>
                                 </div>
-                            <div class="col-12 col-s-12 padding-box">
-                                <select ng-model="selectedCategory" ng-options="item.tenChuyenMuc for item in selectItems">
-                                    <option value="">Chọn danh mục</option>
-                                </select>
-                            </div>
+
 
 
                                 <div class="col-12 col-s-12 padding-box">
@@ -87,7 +89,7 @@
                                     <label for="txtright">Ngày tạo:</label>
                                 </div>
                                 <div class="col-12 col-s-12 padding-box">
-                                    <input type="text" id="ngaytao" ng-model="ngayTao" placeholder="Nhập ngày tạo...">
+                                    <input type="date" id="ngaytao" ng-model="ngayTao" placeholder="Nhập ngày tạo...">
                                 </div>
 
                                 <div class="col-12 col-s-12 padding-box">
@@ -111,12 +113,12 @@
                                     <input id="status" ng-model="trangthai"  placeholder="Nhập trang thai...">
                                 </div>
 
-                                <button type="submit" style="background-color: rgba(44, 140, 15, 0.8);"
+                                <button ng-click="Them()" style="background-color: rgba(44, 140, 15, 0.8);"
                                   >Thêm sản phẩm</button>
                                 <button class="btn-form" style="background-color: rgba(227, 32, 21, 0.8);"
                                     onclick="NhapMoi()">Nhập mới</button>
                                 <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);"
-                                    id="btnUpdate" onclick="CapNhat()">Cập nhật
+                                    id="btnUpdate" ng-click="CapNhat()">Cập nhật
                                     thông tin</button>
                             </form>
                         </div>
@@ -133,11 +135,11 @@
                         <hr>
                         <div class="row">
                             <div class="col-10 col-s-12 padding-box">
-                                <input type="text" id="search-customer"
-                                    placeholder="Nhập mã, tên hoặc số điện thoại khách hàng...">
+                                <input type="text" id="search-customer" ng-model="timKH"
+                                    placeholder="Nhập tên san pham...">
                             </div>
                             <div class="col-2 col-s-12 padding-box">
-                                <button><i class="fas fas fa-search" aria-hidden="true"></i> Tìm kiếm</button>
+                                <button ng-click="getIndex()"><i class="fas fas fa-search" aria-hidden="true"></i> Tìm kiếm</button>
                             </div>
                         </div>
                         <div class="row">
@@ -167,8 +169,8 @@
                                         <td>{{x.gia}}</td>
                                         <td>{{x.trangThai ? 'Đang bán' : 'Không bán'}}</td>
                                         <td style="text-align: center;">
-                                            <i class="fas fa-edit" title="Sửa" onclick="SuaSanPham()"></i>
-                                            <i class="fas fa-trash-alt" title="Xóa"></i>
+                                            <i class="fas fa-edit" title="Sửa" style="color: rgb(0, 132, 255)" ng-click="Sua(x)"></i>
+                                            <i class="fas fa-trash-alt" style="color: red" title="Xóa" ng-click="Xoa(x)"></i>
                                         </td>
                                     </tr>
                                    
