@@ -1,0 +1,18 @@
+{
+  "maHoaDon": 2,
+  "tenKH": "Doan Tuan Anh",
+  "diachi": "Khu 4 Ba che",
+  "tongGia": 20000,
+  "trangThai": 1,
+  "sdt": "098346333",
+  "list_json_chitiethoadon": [
+    {
+      "maSanPham": 9,
+      "soLuong": 9,
+      "tongGia": 90000,
+      "status": "2"
+
+    }
+  ]
+}
+

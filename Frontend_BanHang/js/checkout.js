@@ -1,6 +1,6 @@
 var app = angular.module("AppBanHang", []);
 app.controller("CheckOut", function ($scope, $http, AuthService) {
-  $scope.donHangs = [];
+  $scope.donHangs;
   //thong tin khach hang
   $scope.TenKhachHang;
   $scope.DiaChi;
@@ -9,10 +9,24 @@ app.controller("CheckOut", function ($scope, $http, AuthService) {
   $scope.Email;
   $scope.total = 0;
 
-  $scope.Load = function () {
-    $scope.donHangs = JSON.parse(localStorage.getItem("cart"));
-    $scope.userInfo = AuthService.getUserInfo();
-  };
+  $scope.userInfo = AuthService.getUserInfo();
+
+$scope.Load = function () {
+  console.log("Tai khoan:", $scope.userInfo);
+  var cartData = localStorage.getItem("cart");
+  $scope.items = cartData ? JSON.parse(cartData) : [];
+   $scope.donHangs = $scope.items.filter(function (item) {
+    if(item.customerId === $scope.userInfo.maTaiKhoan) {
+      return item;
+    }
+  })
+  // $scope.userInfo = AuthService.getUserInfo();
+  if ($scope.donHangs) {
+    $scope.TongTien();
+  } else {
+    $scope.total = 0;
+  } 
+};
   //check user bat buoc
   $scope.CheckLogin = function () {
     $scope.isLogin = AuthService.checkLogin();
@@ -32,31 +46,22 @@ app.controller("CheckOut", function ($scope, $http, AuthService) {
     }
     console.log($scope.total);
   };
+  //xoa sp trong gio co ma
+  $scope.DeleteCart = function () {
+    var cartData = localStorage.getItem("cart");
+    if(cartData) {
+      var listCart = JSON.parse(cartData);
+      //console.log(listCart); 
+      //$scope.userInfo = AuthService.getUserInfo();
+      var maSP = $scope.userInfo.maTaiKhoan;
+      console.log(maSP);
+      var newListCart = listCart.filter(function (item) {
+        return item.customerId !== maSP;
+      });
+      localStorage.setItem("cart", JSON.stringify(newListCart));
+    }
+  }
 
-  //   data = {
-  //     {
-  //   "khach": {
-  //     "id": 0,
-  //     "tenKH": "string",
-  //     "gioiTinh": true,
-  //     "diaChi": "string",
-  //     "sdt": "string",
-  //     "email": "string"
-  //   },
-  //   "ngayDat": "2023-11-09T14:44:35.062Z",
-  //   "maTK": 0,
-  //   "trangThaiDonHang": "string",
-  //   "listchitiet": [
-  //     {
-  //       "maChiTietDonHang": 0,
-  //       "maDonHang": 0,
-  //       "maSanPham": 0,
-  //       "soLuong": 0,
-  //       "giaMua": 0
-  //     }
-  //   ]
-  // }
-  //   }
   //them don hang
   $scope.ThemDonHang = function (event) {
      event.preventDefault();
@@ -70,11 +75,11 @@ app.controller("CheckOut", function ($scope, $http, AuthService) {
     var currentDate = new Date();
     obj.ngayDat = currentDate;
     obj.maTK = $scope.userInfo.maTaiKhoan;
-    obj.trangThaiDonHang = "Dang Xu Ly";
-    obj.listchitiet=[];
+    obj.trangThaiDonHang = "0";
+    obj.list_json_chitiet_donhang = [];
     donHang = JSON.parse(localStorage.getItem("cart"));
     for (var i = 0; i < donHang.length; i++) {
-      obj.listchitiet.push({
+      obj.list_json_chitiet_donhang.push({
         maSanPham: donHang[i].maSanPham,
         soLuong: donHang[i].quantity,
         giaMua: donHang[i].gia,
@@ -89,8 +94,8 @@ app.controller("CheckOut", function ($scope, $http, AuthService) {
         .then(function (response) {
           if (response.status === 200) {
             alert("Đặt hàng thành công");
-            window.localStorage.removeItem("cart");
-            $scope.donHangs = [];
+             $scope.DeleteCart();
+           //$scope.donHangs = [];
           }
         })
         .catch(function (err) {
@@ -99,39 +104,9 @@ app.controller("CheckOut", function ($scope, $http, AuthService) {
   };
   $scope.CheckLogin();
   $scope.Load();
-  $scope.TongTien();
+ 
 
   //xoa don hang trong gio hang
 
-  //   $scope.LoadCart = function () {
-  //     $scope.listcart = JSON.parse(localStorage.getItem("cart")) || [];
-  //     makeScript("js/main.js");
-  //   };
-  //   $scope.save = function () {
-  //     let obj = {};
-  //     obj.khach = {};
-  //     obj.khach.TenKhachHang = $scope.TenKhachHang;
-  //     obj.khach.DiaChi = $scope.DiaChi;
-  //     obj.khach.SoDienThoai = $scope.SoDienThoai;
-  //     obj.khach.Email = $scope.Email;
-  //     obj.listchitiet = [];
-  //     let list = JSON.parse(localStorage.getItem("cart"));
-  //     for (var i = 0; i < list.length; i++) {
-  //       obj.listchitiet.push({
-  //         MaSanPham: list[i].maSanPham,
-  //         SoLuong: list[i].quantity,
-  //         GiaMua: 10,
-  //         MaDonHangNavigation: {},
-  //       });
-  //     }
-  //     $http({
-  //       method: "POST",
-  //       data: obj,
-  //       url: current_url + "/api/KhachHang/create-donhang",
-  //     }).then(function (response) {
-  //       alert("Thêm đơn hàng thành công");
-  //     });
-  //   };
 
-  //   $scope.LoadCart();
 });
