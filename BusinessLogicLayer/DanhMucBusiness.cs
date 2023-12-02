@@ -29,5 +29,20 @@ namespace BusinessLogicLayer
         {
             return _res.GetSimilar(tenDM);
         }
+
+
+        public bool Create(LoaiSanPhamModel model)
+        {
+            return _res.Create(model);
+        }
+        public bool Update(LoaiSanPhamModel model)
+        {
+            return _res.Update(model);
+        }
+
+        public bool Delete(LoaiSanPhamModel model)
+        {
+            return _res.Delete(model);
+        }
     }
 }

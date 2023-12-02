@@ -30,6 +30,8 @@ namespace DataModel
         public string TongTienBanRa { get; set; }
         public string TongSoSanPham { get; set; }
         public string TongSoDonHang { get; set; }
+        public string SoDonBan { get; set; }
+        public string SoKhach { get; set; }
 
     }
 

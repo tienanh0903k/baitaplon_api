@@ -13,5 +13,10 @@ namespace DataAccessLayer
         List<DanhMucModel> GetDanhMuc(string name);
         List<DanhMucModel> GetSimilar(int maDM);
 
+        //crud
+        bool Create(LoaiSanPhamModel model);
+        bool Update(LoaiSanPhamModel model);
+        bool Delete(LoaiSanPhamModel model);
+
     }
 }

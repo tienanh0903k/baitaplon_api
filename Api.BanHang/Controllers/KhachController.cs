@@ -38,7 +38,7 @@ namespace Api.BanHang.Controllers
         }
 
         [Route("delete-khach")]
-        [HttpDelete]
+        [HttpPost]
         public KhachModel DeleteItem ([FromBody] KhachModel model)
         {
             _khachBusiness.Delete(model);

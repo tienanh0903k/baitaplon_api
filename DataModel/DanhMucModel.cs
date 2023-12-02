@@ -20,4 +20,11 @@ namespace DataModel
         public bool TrangThai { get; set; }
         public int LuotXem { get; set; }
     }
+
+    public class LoaiSanPhamModel
+    {
+        public int MaChuyenMuc { get; set; }
+        public string? TenChuyenMuc { get; set; }
+        public string? NoiDung { get; set; }
+    }
 }

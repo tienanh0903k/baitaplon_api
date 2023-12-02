@@ -30,10 +30,6 @@ namespace BusinessLogicLayer
             return _res.Update(model);
         }
 
-        //public bool Delete(HoaDonModel model)
-        //{
-        //    return _res.Delete(model);
-        //}
         public bool Delete(int maHoaDon)
         {
             return _res.Delete(new HoaDonModel { MaHoaDon = maHoaDon });

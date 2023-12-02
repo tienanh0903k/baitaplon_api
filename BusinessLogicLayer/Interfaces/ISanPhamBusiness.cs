@@ -13,10 +13,14 @@ namespace BusinessLogicLayer
         SanPhamModels GetDatabyID(int id);
         bool Create(SanPhamModels model); 
         bool Update(SanPhamModels model);
+        bool Delete(int maSanPham);
         //user
         List<SanPhamModels> GetByTheLoai(int ten_cm);
         List<AllProducts> GetAllHome();
-        public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp);
+        List<SanPhamModels> GetSanPhamHot();
+
+        List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp);
+        List<SanPhamModels> Search1(int pageIndex, int pageSize, out long total,  string status, string ten_sp);
 
     }
 }

@@ -47,6 +47,83 @@ namespace DataAccessLayer
 
         }
 
+        public bool Create(SanPhamModels model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sanpham_create",
+                    "@MaChuyenMuc", model.MaChuyenMuc,
+                    "@TenSanPham", model.TenSanPham,
+                    "@AnhDaiDien", model.AnhDaiDien,
+                    "@NgayTao", model.NgayTao,
+                    "@Gia", model.Gia,
+                    "@SoLuong", model.SoLuong,
+                    "@TrangThai", model.TrangThai,
+                    "@LuotXem", model.LuotXem,
+                    "@list_json_ct_sanpham", model.list_json_ctsanpham != null ? MessageConvert.SerializeObject(model.list_json_ctsanpham) : null
+                );
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public bool Update(SanPhamModels model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sanpham_update",
+                    "@MaSanPham", model.MaSanPham,
+                    "@MaChuyenMuc", model.MaChuyenMuc,
+                    "@TenSanPham", model.TenSanPham,
+                    "@AnhDaiDien", model.AnhDaiDien,
+                    "@NgayTao", model.NgayTao,
+                    "@Gia", model.Gia,
+                    "@SoLuong", model.SoLuong,
+                    "@TrangThai", model.TrangThai,
+                    "@LuotXem", model.LuotXem
+                );
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Delete(SanPhamModels model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_xoa_sanpham",
+                "@MaSanPham", model.MaSanPham
+                );
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
         public List<SanPhamModels> Search(int pageIndex, int pageSize, out long total, string ten_sp)
@@ -71,7 +148,32 @@ namespace DataAccessLayer
             }
         }
 
+        public List<SanPhamModels> Search1(int pageIndex, int pageSize, out long total,  string status, string ten_sp)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_san_pham_search1",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize,
+                    "@ten_san_pham", ten_sp,
+                    "@status", status
+                    );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModels>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         //getAll trang chuiu
+
+
         public List<AllProducts> GetAllHome()
         {
             string msgError = "";
@@ -109,62 +211,27 @@ namespace DataAccessLayer
         }
 
 
-        public bool Create(SanPhamModels model)
+
+
+        public List<SanPhamModels> GetSanPhamHot()
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sanpham_create",
-                    "@MaChuyenMuc", model.MaChuyenMuc,
-                    "@TenSanPham", model.TenSanPham,
-                    "@AnhDaiDien", model.AnhDaiDien,
-                    "@NgayTao", model.NgayTao,
-                    "@Gia", model.Gia,
-                    "@SoLuong", model.SoLuong,
-                    "@TrangThai", model.TrangThai,
-                    "@LuotXem", model.LuotXem,
-                    "@list_json_ct_sanpham", model.list_json_ctsanpham != null ? MessageConvert.SerializeObject(model.list_json_ctsanpham) : null
-                );
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return true;
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_sanpham_hot");
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<SanPhamModels>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+
         }
 
 
-        public bool Update(SanPhamModels model)
-        {
-            string msgError = "";
-            try
-            {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sanpham_update",
-                    "@MaSanPham",  model.MaSanPham,
-                    "@MaChuyenMuc", model.MaChuyenMuc,
-                    "@TenSanPham", model.TenSanPham,
-                    "@AnhDaiDien", model.AnhDaiDien,
-                    "@NgayTao", model.NgayTao,
-                    "@Gia", model.Gia,
-                    "@SoLuong", model.SoLuong,
-                    "@TrangThai", model.TrangThai,
-                    "@LuotXem", model.LuotXem
-                );
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+
 
 
     }

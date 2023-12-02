@@ -93,11 +93,10 @@
 
     }
 
-    
+
 
 
   ],
-
 
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5183"

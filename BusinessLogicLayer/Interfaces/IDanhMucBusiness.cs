@@ -12,5 +12,9 @@ namespace BusinessLogicLayer
         List<DanhMucModel> GetAllDanhMuc();
         List<DanhMucModel> GetDanhMuc(string name);
         List<DanhMucModel> GetSimilar(int tenDM);
+
+        bool Create(LoaiSanPhamModel model);
+        bool Update(LoaiSanPhamModel model);
+        bool Delete(LoaiSanPhamModel model);
     }
 }

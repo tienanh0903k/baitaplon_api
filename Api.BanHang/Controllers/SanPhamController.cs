@@ -45,6 +45,28 @@ namespace Api.BanHang.Controllers
             return model;
         }
 
+
+
+        [Route("delete-sp/{id}")]
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            bool result = _sanphamBusiness.Delete(id);
+            if (result)
+            {
+                return Ok(new
+                {
+                    message = "Xoa thanh cong"
+                });
+            }
+            else
+            {
+                return BadRequest("Xóa không thành công.");
+            }
+
+        }
+
+
         [Route("search-sp")]
         [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
