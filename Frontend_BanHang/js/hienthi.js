@@ -9,7 +9,7 @@
         <nav>
             <ul>
                 <li><a style="text-decoration: none;" href="./index.html">Trang chủ</a></li>
-                <li><a href="./news.html">Sản phẩm</a></li>
+                <li><a href="./user-sanpham.html">Sản phẩm</a></li>
                 <li><a href="./news.html">Tin tức</a></li>
                 <li><a href="#">Liên Hệ</a></li>
             </ul>

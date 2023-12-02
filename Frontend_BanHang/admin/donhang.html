@@ -31,16 +31,16 @@
     <section class="main">
         <div class="row">
             <div class="col-1 col-s-12 category">
-                <button onclick="TongQuan()"><i class="fas fa-tachometer-alt"></i> Tổng quan</button>
-                <button onclick="LoaiSanPham()"><i class="fas fa-boxes"></i> Loại sản phẩm</button>
-                <button onclick="SanPham()"><i class="fas fa-barcode"></i> Sản phẩm</button>
-                <button onclick="NhaCungCap()"><i class="fas fa-truck"></i> Nhà cung cấp</button>
-                <button onclick="KhachHang()"><i class="fas fa-users"></i> Khách hàng</button>
-                <button class="active" onclick="DonHang()"><i class="fas fa-user"></i>Đơn hàng</button>
-                <button onclick="HoaDonNhap()"><i class="fas fa-file-import"></i> Hóa đơn nhập</button>
-                <button onclick="HoaDonBan()"><i class="fas fa-shopping-cart"></i> Hóa đơn bán</button>
-                <button onclick="TinTuc()"><i class="fas fa-newspaper"></i>Tài khoản</button>
-                <button onclick="ThietLap()"><i class="fas fa-cogs"></i> Thiết lập</button>
+                <button onclick="TongQuan()">Tổng quan</button>
+                <button onclick="LoaiSanPham()"> Loại sản phẩm</button>
+                <button onclick="SanPham()"> Sản phẩm</button>
+                <button onclick="NhaCungCap()"> Nhà cung cấp</button>
+                <button onclick="KhachHang()"> Khách hàng</button>
+                <button class="active" onclick="DonHang()">Đơn hàng</button>
+                <button onclick="HoaDonNhap()"> Hóa đơn nhập</button>
+                <button onclick="HoaDonBan()"> Hóa đơn bán</button>
+                <button onclick="TinTuc()">Tài khoản</button>
+                <button onclick="ThietLap()"> Thiết lập</button>
             </div>
             <div class="col-11 col-s-12 content">
                 <div class="col-4 col-s-12 content">
@@ -94,12 +94,8 @@
                                     </div>
                                 </div>
                                 <div class="option-btn">
-                                    <button style="background-color: rgba(44, 140, 15, 0.8);"
-                                        onclick="SuaDonHang()">Thêm </button>
-                                    <button class="btn-form" style="background-color: rgba(227, 32, 21, 0.8);"
-                                        onclick="NhapMoi()">Nhập mới</button>
                                     <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);"
-                                        id="btnUpdate" onclick="CapNhat()">Cập nhật</button>
+                                        id="btnUpdate" ng-click="CapNhat()">Cập nhật</button>
                                     <button style="background-color: rgba(44, 140, 15, 0.8);" ng-click="LapHoaDon()">Lập hóa đơn</button>
                                 </div>
                             </form>

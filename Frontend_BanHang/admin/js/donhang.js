@@ -28,6 +28,20 @@ app.controller("AdminDonHang", function ($scope, $http, $location) {
     $scope.slTrangThai = donhang.trangThaiDonHang;
   };
 
+  $scope.CapNhat = function () {
+    $http({
+      method: "PUT",
+      url: "https://localhost:44306/api/DonHangs/update-donhang",
+      data: {
+        maDonHang: $scope.madonhang,
+        ngayDat: $scope.ngayDat,
+        trangThaiDonHang: $scope.slTrangThai,
+      },
+    }).then(function (res) {
+      alert("123");
+    });
+  };
+
   $scope.LapHoaDon = function () {
     console.log($scope.madonhang);
     if (!$scope.madonhang || !$scope.tenKhachHang || !$scope.ngayDat || $scope.slTrangThai == 0) {

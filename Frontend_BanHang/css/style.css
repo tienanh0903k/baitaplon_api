@@ -257,6 +257,26 @@ h1 {
     cursor: pointer;
 }
 
+.main .row .content .tabcontent .row .padding-box input,
+select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.main .row .content .tabcontent .row .padding-box button {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #1d1f20;
+    color: white;
+}
+
 .header .box-login .box-login-bottom {
     height: auto;
     width: auto;
@@ -271,7 +291,7 @@ h1 {
     padding: 10px;
     width: 100%;
     text-align: left;
-    background-color: #0483cc;
+    background-color: #2e3335;
     color: white;
     font-size: 10px;
     cursor: pointer;
@@ -440,9 +460,21 @@ td:nth-child(1) {
 }
 
 
+.box {
+    padding: 14px;
+    margin: 12px;
+}
 
 
+.search-btn {
+    position: relative;
+}
 
-
+.search-btn button {
+    position: absolute;
+    top: 10px;
+    padding: 9px;  
+    margin: 10px;
+}
 
 

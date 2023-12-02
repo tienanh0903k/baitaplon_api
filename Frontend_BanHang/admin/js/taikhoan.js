@@ -38,6 +38,11 @@ app.controller("AdminTaiKhoan", function ($scope, $http) {
     }
     $scope.getTaiKhoan();
 })
+
+
+
+
+
 // {
 //   "maTaiKhoan": 0,
 //   "loaiTaiKhoan": 0,
